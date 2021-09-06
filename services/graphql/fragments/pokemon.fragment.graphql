@@ -1,0 +1,17 @@
+fragment pokemon on Pokemon {
+  id
+  number
+  name
+  image
+  classification
+  weight {
+    minimum
+    maximum
+  }
+  height {
+    minimum
+    maximum
+  }
+}
+
+# export default pokemon
