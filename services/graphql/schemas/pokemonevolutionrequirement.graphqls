@@ -1,0 +1,16 @@
+"""
+Represents a Pokémon's requirement to evolve
+"""
+type PokemonEvolutionRequirement {
+  """
+  The amount of candy to evolve
+  """
+  amount: Int
+
+  """
+  The name of the candy to evolve
+  """
+  name: String
+}
+
+# export default PokemonEvolutionRequirement

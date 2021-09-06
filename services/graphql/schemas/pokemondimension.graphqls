@@ -1,0 +1,16 @@
+"""
+Represents a Pokémon's dimensions
+"""
+type PokemonDimension {
+  """
+  The minimum value of this dimension
+  """
+  minimum: String
+
+  """
+  The maximum value of this dimension
+  """
+  maximum: String
+}
+
+# export default PokemonDimension
