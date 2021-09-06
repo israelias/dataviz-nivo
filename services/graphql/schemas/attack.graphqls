@@ -1,0 +1,21 @@
+"""
+Represents a Pokémon's attack types
+"""
+type Attack {
+  """
+  The name of this Pokémon attack
+  """
+  name: String
+
+  """
+  The type of this Pokémon attack
+  """
+  type: String
+
+  """
+  The damage of this Pokémon attack
+  """
+  damage: Int
+}
+
+# export default Attack
