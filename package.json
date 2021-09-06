@@ -1,4 +1,9 @@
 {
+  "name": "lux-frontend",
+  "version": "1.0.0",
+  "description": "This is a frontend project that simulates a potential real-life designer hand-off that is given to a software engineer to implement.",
+  "repository": "https://github.com/israelias/lux-frontend",
+  "author": "Joem Elias Sanez",
   "private": true,
   "scripts": {
     "dev": "next",
@@ -7,6 +12,8 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.10",
+    "graphql": "^15.5.2",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
