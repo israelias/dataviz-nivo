@@ -1,0 +1,9 @@
+# import pokemon from "../fragments/pokemon.fragment.graphql"
+
+query GetAllPokemons {
+  pokemons(first: 151) {
+    ...pokemon
+  }
+}
+
+# export default GetAllPokemons

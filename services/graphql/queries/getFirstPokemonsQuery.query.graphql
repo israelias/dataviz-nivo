@@ -1,0 +1,9 @@
+# import pokemon from "../fragments/pokemon.fragment.graphql"
+
+query GetFirstPokemons($first: Int!) {
+  pokemons(first: $first) {
+    ...pokemon
+  }
+}
+
+# export default GetFirstPokemons
