@@ -7,9 +7,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../lib/apollo';
 import { theme } from '../theme';
-import PokemonsDataProvider, {
-  usePokemonsData,
-} from '../context/pokemon.context';
+import PokemonsDataProvider from '../context/pokemon.context';
 import AuthProvider from '../context/auth.context';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
