@@ -1,14 +1,10 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions = {};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions =  {}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -99,10 +95,12 @@ export type Query = {
   pokemon?: Maybe<Pokemon>;
 };
 
+
 /** Query any Pokémon by number or name */
 export type QueryPokemonsArgs = {
   first: Scalars['Int'];
 };
+
 
 /** Query any Pokémon by number or name */
 export type QueryPokemonArgs = {
@@ -110,174 +108,60 @@ export type QueryPokemonArgs = {
   name?: Maybe<Scalars['String']>;
 };
 
-export type PokemonFragment = {
-  __typename?: 'Pokemon';
-  id: string;
-  number?: Maybe<string>;
-  name?: Maybe<string>;
-  image?: Maybe<string>;
-  classification?: Maybe<string>;
-  maxCP?: Maybe<number>;
-  maxHP?: Maybe<number>;
-  weight?: Maybe<{
-    __typename?: 'PokemonDimension';
-    minimum?: Maybe<string>;
-    maximum?: Maybe<string>;
-  }>;
-  height?: Maybe<{
-    __typename?: 'PokemonDimension';
-    minimum?: Maybe<string>;
-    maximum?: Maybe<string>;
-  }>;
-};
+export type PokemonFragment = { __typename?: 'Pokemon', id: string, number?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, classification?: Maybe<string>, maxCP?: Maybe<number>, maxHP?: Maybe<number>, weight?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }>, height?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }> };
 
 export type GetFirstPokemonsQueryVariables = Exact<{
   first: Scalars['Int'];
 }>;
 
-export type GetFirstPokemonsQuery = {
-  __typename?: 'Query';
-  pokemons?: Maybe<
-    Array<
-      Maybe<{
-        __typename?: 'Pokemon';
-        id: string;
-        number?: Maybe<string>;
-        name?: Maybe<string>;
-        image?: Maybe<string>;
-        classification?: Maybe<string>;
-        maxCP?: Maybe<number>;
-        maxHP?: Maybe<number>;
-        weight?: Maybe<{
-          __typename?: 'PokemonDimension';
-          minimum?: Maybe<string>;
-          maximum?: Maybe<string>;
-        }>;
-        height?: Maybe<{
-          __typename?: 'PokemonDimension';
-          minimum?: Maybe<string>;
-          maximum?: Maybe<string>;
-        }>;
-      }>
-    >
-  >;
-};
+
+export type GetFirstPokemonsQuery = { __typename?: 'Query', pokemons?: Maybe<Array<Maybe<{ __typename?: 'Pokemon', id: string, number?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, classification?: Maybe<string>, maxCP?: Maybe<number>, maxHP?: Maybe<number>, weight?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }>, height?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }> }>>> };
 
 export type GetPokemonByIdQueryVariables = Exact<{
   id?: Maybe<Scalars['String']>;
 }>;
 
-export type GetPokemonByIdQuery = {
-  __typename?: 'Query';
-  pokemon?: Maybe<{
-    __typename?: 'Pokemon';
-    id: string;
-    number?: Maybe<string>;
-    name?: Maybe<string>;
-    image?: Maybe<string>;
-    classification?: Maybe<string>;
-    maxCP?: Maybe<number>;
-    maxHP?: Maybe<number>;
-    weight?: Maybe<{
-      __typename?: 'PokemonDimension';
-      minimum?: Maybe<string>;
-      maximum?: Maybe<string>;
-    }>;
-    height?: Maybe<{
-      __typename?: 'PokemonDimension';
-      minimum?: Maybe<string>;
-      maximum?: Maybe<string>;
-    }>;
-  }>;
-};
+
+export type GetPokemonByIdQuery = { __typename?: 'Query', pokemon?: Maybe<{ __typename?: 'Pokemon', id: string, number?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, classification?: Maybe<string>, maxCP?: Maybe<number>, maxHP?: Maybe<number>, weight?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }>, height?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }> }> };
 
 export type GetPokemonByNameQueryVariables = Exact<{
   name?: Maybe<Scalars['String']>;
 }>;
 
-export type GetPokemonByNameQuery = {
-  __typename?: 'Query';
-  pokemon?: Maybe<{
-    __typename?: 'Pokemon';
-    id: string;
-    number?: Maybe<string>;
-    name?: Maybe<string>;
-    image?: Maybe<string>;
-    classification?: Maybe<string>;
-    maxCP?: Maybe<number>;
-    maxHP?: Maybe<number>;
-    weight?: Maybe<{
-      __typename?: 'PokemonDimension';
-      minimum?: Maybe<string>;
-      maximum?: Maybe<string>;
-    }>;
-    height?: Maybe<{
-      __typename?: 'PokemonDimension';
-      minimum?: Maybe<string>;
-      maximum?: Maybe<string>;
-    }>;
-  }>;
-};
 
-export type GetAllPokemonsQueryVariables = Exact<{
-  [key: string]: never;
-}>;
+export type GetPokemonByNameQuery = { __typename?: 'Query', pokemon?: Maybe<{ __typename?: 'Pokemon', id: string, number?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, classification?: Maybe<string>, maxCP?: Maybe<number>, maxHP?: Maybe<number>, weight?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }>, height?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }> }> };
 
-export type GetAllPokemonsQuery = {
-  __typename?: 'Query';
-  pokemons?: Maybe<
-    Array<
-      Maybe<{
-        __typename?: 'Pokemon';
-        id: string;
-        number?: Maybe<string>;
-        name?: Maybe<string>;
-        image?: Maybe<string>;
-        classification?: Maybe<string>;
-        maxCP?: Maybe<number>;
-        maxHP?: Maybe<number>;
-        weight?: Maybe<{
-          __typename?: 'PokemonDimension';
-          minimum?: Maybe<string>;
-          maximum?: Maybe<string>;
-        }>;
-        height?: Maybe<{
-          __typename?: 'PokemonDimension';
-          minimum?: Maybe<string>;
-          maximum?: Maybe<string>;
-        }>;
-      }>
-    >
-  >;
-};
+export type GetAllPokemonsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllPokemonsQuery = { __typename?: 'Query', pokemons?: Maybe<Array<Maybe<{ __typename?: 'Pokemon', id: string, number?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, classification?: Maybe<string>, maxCP?: Maybe<number>, maxHP?: Maybe<number>, weight?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }>, height?: Maybe<{ __typename?: 'PokemonDimension', minimum?: Maybe<string>, maximum?: Maybe<string> }> }>>> };
 
 export const PokemonFragmentDoc = gql`
-  fragment pokemon on Pokemon {
-    id
-    number
-    name
-    image
-    classification
-    maxCP
-    maxHP
-    weight {
-      minimum
-      maximum
-    }
-    height {
-      minimum
-      maximum
-    }
+    fragment pokemon on Pokemon {
+  id
+  number
+  name
+  image
+  classification
+  maxCP
+  maxHP
+  weight {
+    minimum
+    maximum
   }
-`;
+  height {
+    minimum
+    maximum
+  }
+}
+    `;
 export const GetFirstPokemonsDocument = gql`
-  query GetFirstPokemons($first: Int!) {
-    pokemons(first: $first) {
-      ...pokemon
-    }
+    query GetFirstPokemons($first: Int!) {
+  pokemons(first: $first) {
+    ...pokemon
   }
-  ${PokemonFragmentDoc}
-`;
+}
+    ${PokemonFragmentDoc}`;
 
 /**
  * __useGetFirstPokemonsQuery__
@@ -295,48 +179,24 @@ export const GetFirstPokemonsDocument = gql`
  *   },
  * });
  */
-export function useGetFirstPokemonsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    GetFirstPokemonsQuery,
-    GetFirstPokemonsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetFirstPokemonsQuery,
-    GetFirstPokemonsQueryVariables
-  >(GetFirstPokemonsDocument, options);
-}
-export function useGetFirstPokemonsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetFirstPokemonsQuery,
-    GetFirstPokemonsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetFirstPokemonsQuery,
-    GetFirstPokemonsQueryVariables
-  >(GetFirstPokemonsDocument, options);
-}
-export type GetFirstPokemonsQueryHookResult = ReturnType<
-  typeof useGetFirstPokemonsQuery
->;
-export type GetFirstPokemonsLazyQueryHookResult = ReturnType<
-  typeof useGetFirstPokemonsLazyQuery
->;
-export type GetFirstPokemonsQueryResult = Apollo.QueryResult<
-  GetFirstPokemonsQuery,
-  GetFirstPokemonsQueryVariables
->;
+export function useGetFirstPokemonsQuery(baseOptions: Apollo.QueryHookOptions<GetFirstPokemonsQuery, GetFirstPokemonsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFirstPokemonsQuery, GetFirstPokemonsQueryVariables>(GetFirstPokemonsDocument, options);
+      }
+export function useGetFirstPokemonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFirstPokemonsQuery, GetFirstPokemonsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFirstPokemonsQuery, GetFirstPokemonsQueryVariables>(GetFirstPokemonsDocument, options);
+        }
+export type GetFirstPokemonsQueryHookResult = ReturnType<typeof useGetFirstPokemonsQuery>;
+export type GetFirstPokemonsLazyQueryHookResult = ReturnType<typeof useGetFirstPokemonsLazyQuery>;
+export type GetFirstPokemonsQueryResult = Apollo.QueryResult<GetFirstPokemonsQuery, GetFirstPokemonsQueryVariables>;
 export const GetPokemonByIdDocument = gql`
-  query GetPokemonById($id: String) {
-    pokemon(id: $id) {
-      ...pokemon
-    }
+    query GetPokemonById($id: String) {
+  pokemon(id: $id) {
+    ...pokemon
   }
-  ${PokemonFragmentDoc}
-`;
+}
+    ${PokemonFragmentDoc}`;
 
 /**
  * __useGetPokemonByIdQuery__
@@ -354,48 +214,24 @@ export const GetPokemonByIdDocument = gql`
  *   },
  * });
  */
-export function useGetPokemonByIdQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >(GetPokemonByIdDocument, options);
-}
-export function useGetPokemonByIdLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >(GetPokemonByIdDocument, options);
-}
-export type GetPokemonByIdQueryHookResult = ReturnType<
-  typeof useGetPokemonByIdQuery
->;
-export type GetPokemonByIdLazyQueryHookResult = ReturnType<
-  typeof useGetPokemonByIdLazyQuery
->;
-export type GetPokemonByIdQueryResult = Apollo.QueryResult<
-  GetPokemonByIdQuery,
-  GetPokemonByIdQueryVariables
->;
+export function useGetPokemonByIdQuery(baseOptions?: Apollo.QueryHookOptions<GetPokemonByIdQuery, GetPokemonByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPokemonByIdQuery, GetPokemonByIdQueryVariables>(GetPokemonByIdDocument, options);
+      }
+export function useGetPokemonByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPokemonByIdQuery, GetPokemonByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPokemonByIdQuery, GetPokemonByIdQueryVariables>(GetPokemonByIdDocument, options);
+        }
+export type GetPokemonByIdQueryHookResult = ReturnType<typeof useGetPokemonByIdQuery>;
+export type GetPokemonByIdLazyQueryHookResult = ReturnType<typeof useGetPokemonByIdLazyQuery>;
+export type GetPokemonByIdQueryResult = Apollo.QueryResult<GetPokemonByIdQuery, GetPokemonByIdQueryVariables>;
 export const GetPokemonByNameDocument = gql`
-  query GetPokemonByName($name: String) {
-    pokemon(name: $name) {
-      ...pokemon
-    }
+    query GetPokemonByName($name: String) {
+  pokemon(name: $name) {
+    ...pokemon
   }
-  ${PokemonFragmentDoc}
-`;
+}
+    ${PokemonFragmentDoc}`;
 
 /**
  * __useGetPokemonByNameQuery__
@@ -413,48 +249,24 @@ export const GetPokemonByNameDocument = gql`
  *   },
  * });
  */
-export function useGetPokemonByNameQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetPokemonByNameQuery,
-    GetPokemonByNameQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetPokemonByNameQuery,
-    GetPokemonByNameQueryVariables
-  >(GetPokemonByNameDocument, options);
-}
-export function useGetPokemonByNameLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetPokemonByNameQuery,
-    GetPokemonByNameQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetPokemonByNameQuery,
-    GetPokemonByNameQueryVariables
-  >(GetPokemonByNameDocument, options);
-}
-export type GetPokemonByNameQueryHookResult = ReturnType<
-  typeof useGetPokemonByNameQuery
->;
-export type GetPokemonByNameLazyQueryHookResult = ReturnType<
-  typeof useGetPokemonByNameLazyQuery
->;
-export type GetPokemonByNameQueryResult = Apollo.QueryResult<
-  GetPokemonByNameQuery,
-  GetPokemonByNameQueryVariables
->;
+export function useGetPokemonByNameQuery(baseOptions?: Apollo.QueryHookOptions<GetPokemonByNameQuery, GetPokemonByNameQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPokemonByNameQuery, GetPokemonByNameQueryVariables>(GetPokemonByNameDocument, options);
+      }
+export function useGetPokemonByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPokemonByNameQuery, GetPokemonByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPokemonByNameQuery, GetPokemonByNameQueryVariables>(GetPokemonByNameDocument, options);
+        }
+export type GetPokemonByNameQueryHookResult = ReturnType<typeof useGetPokemonByNameQuery>;
+export type GetPokemonByNameLazyQueryHookResult = ReturnType<typeof useGetPokemonByNameLazyQuery>;
+export type GetPokemonByNameQueryResult = Apollo.QueryResult<GetPokemonByNameQuery, GetPokemonByNameQueryVariables>;
 export const GetAllPokemonsDocument = gql`
-  query GetAllPokemons {
-    pokemons(first: 151) {
-      ...pokemon
-    }
+    query GetAllPokemons {
+  pokemons(first: 151) {
+    ...pokemon
   }
-  ${PokemonFragmentDoc}
-`;
+}
+    ${PokemonFragmentDoc}`;
 
 /**
  * __useGetAllPokemonsQuery__
@@ -471,37 +283,14 @@ export const GetAllPokemonsDocument = gql`
  *   },
  * });
  */
-export function useGetAllPokemonsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetAllPokemonsQuery,
-    GetAllPokemonsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetAllPokemonsQuery,
-    GetAllPokemonsQueryVariables
-  >(GetAllPokemonsDocument, options);
-}
-export function useGetAllPokemonsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetAllPokemonsQuery,
-    GetAllPokemonsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetAllPokemonsQuery,
-    GetAllPokemonsQueryVariables
-  >(GetAllPokemonsDocument, options);
-}
-export type GetAllPokemonsQueryHookResult = ReturnType<
-  typeof useGetAllPokemonsQuery
->;
-export type GetAllPokemonsLazyQueryHookResult = ReturnType<
-  typeof useGetAllPokemonsLazyQuery
->;
-export type GetAllPokemonsQueryResult = Apollo.QueryResult<
-  GetAllPokemonsQuery,
-  GetAllPokemonsQueryVariables
->;
+export function useGetAllPokemonsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllPokemonsQuery, GetAllPokemonsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllPokemonsQuery, GetAllPokemonsQueryVariables>(GetAllPokemonsDocument, options);
+      }
+export function useGetAllPokemonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllPokemonsQuery, GetAllPokemonsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllPokemonsQuery, GetAllPokemonsQueryVariables>(GetAllPokemonsDocument, options);
+        }
+export type GetAllPokemonsQueryHookResult = ReturnType<typeof useGetAllPokemonsQuery>;
+export type GetAllPokemonsLazyQueryHookResult = ReturnType<typeof useGetAllPokemonsLazyQuery>;
+export type GetAllPokemonsQueryResult = Apollo.QueryResult<GetAllPokemonsQuery, GetAllPokemonsQueryVariables>;

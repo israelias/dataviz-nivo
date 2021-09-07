@@ -1,6 +1,5 @@
 overwrite: true
 schema: "https://graphql-pokemon2.vercel.app"
-# schema: 'services/graphql/**/*.graphqls'
 documents: "services/graphql/**/*.graphql"
 generates:
   ./graphql.schema.json:

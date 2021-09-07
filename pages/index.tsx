@@ -6,6 +6,7 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import {
   PageGetAllPokemonsComp,
@@ -27,6 +28,8 @@ const LoginPage: PageGetAllPokemonsComp = () => {
   const { dispatch } = usePokemonsData();
 
   const { data } = ssrGetAllPokemons.usePage();
+
+  const history = useRouter();
 
   const { email, setEmail, password, setPassword, handleSignIn } =
     useAuth();
@@ -65,6 +68,7 @@ const LoginPage: PageGetAllPokemonsComp = () => {
                 _placeholder={{ color: 'gray.500' }}
                 border="1px solid"
                 borderColor="transparent"
+                color={'white'}
                 _focus={{
                   borderColor: '#f1c857',
                 }}
@@ -79,6 +83,7 @@ const LoginPage: PageGetAllPokemonsComp = () => {
                 type="password"
                 border="1px solid"
                 borderColor="transparent"
+                color={'white'}
                 _focus={{
                   borderColor: '#f1c857',
                 }}
@@ -96,6 +101,10 @@ const LoginPage: PageGetAllPokemonsComp = () => {
               _hover={{
                 bg: '#3f414b',
               }}
+              // TODO
+              // onClick={() => {
+              //   history.push({ pathname: '/pokemons' });
+              // }}
             >
               Login
             </Button>
