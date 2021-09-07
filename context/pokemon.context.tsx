@@ -1,34 +1,8 @@
 import React from 'react';
-import {
-  QueryResult,
-  OperationVariables,
-  useQuery,
-} from '@apollo/client';
 
-import {
-  useGetAllPokemonsLazyQuery,
-  PokemonFragment,
-  GetAllPokemonsDocument,
-  GetAllPokemonsQueryHookResult,
-  GetAllPokemonsLazyQueryHookResult,
-  useGetAllPokemonsQuery,
-  GetAllPokemonsQuery,
-} from '../@types/graphql';
-
-import {
-  PageGetAllPokemonsComp,
-  ssrGetAllPokemons,
-} from '../lib/hooks';
-
-/**
- * Third-level Context provider for all user-specific snipetts and collections data.
- * Relies on UserContext's username upon login to fetch user's data.
- *
- * @since 2021-04-08
- */
+import { PokemonFragment } from '../@types/graphql';
 
 export type PokemonsReturnType = Array<PokemonFragment>;
-// QueryResult<GetAllPokemonsQuery, OperationVariables>;
 
 export enum PokemonActionTypes {
   fetchPokemons,
@@ -66,12 +40,12 @@ type PokemonsDataType = {
   pokemons: PokemonsReturnType | undefined;
   loading: boolean;
   error: {} | undefined;
-  // previousPage: number;
+
   page: number;
-  // currentPage: number;
+
   handlePageChange: (nextPage: number) => void;
   getPokemonsByPage: (nextPage: number) => PokemonFragment[];
-  // getAllPokemonsData: () => Promise<void>;
+
   inViewNum: string;
   setInViewNum: React.Dispatch<React.SetStateAction<string>>;
   state: StateInterface;
