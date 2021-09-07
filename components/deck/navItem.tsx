@@ -26,6 +26,7 @@ export const NavItem = ({
   image,
   number,
   inViewNum,
+  selected,
 }: {
   href: string;
   children?: React.ReactNode;
@@ -39,6 +40,7 @@ export const NavItem = ({
   setInViewData?: React.Dispatch<
     React.SetStateAction<PokemonFragment[]>
   >;
+  selected?: boolean;
 }) => {
   const isActive = asPath === href || inViewNum === number;
   const forwardRef = React.useRef<HTMLDivElement>();

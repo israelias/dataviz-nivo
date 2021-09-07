@@ -26,12 +26,18 @@ export const PokemonItem = ({
   data,
   inViewData,
   setInViewData,
+  selected,
+  name,
+  number,
 }: {
   data: Array<PokemonFragment>;
   inViewData?: Array<PokemonFragment>;
   setInViewData?: React.Dispatch<
     React.SetStateAction<PokemonFragment[]>
   >;
+  selected?: boolean;
+  name?: string;
+  number?: string;
 }) => {
   const { asPath } = useRouter();
   const [inView, setInView] = React.useState(false);
@@ -116,12 +122,14 @@ export const PokemonItem = ({
     <Stack
       py={8}
       mt={16}
+      height={selected ? '100vh' : 'unset'}
       as={'nav'}
       spacing={1}
       maxW={{ md: '360px' }}
       w={'100%'}
       flexShrink={0}
       pl={'24px'}
+      position={selected ? 'absolute' : 'unset'}
       justifyContent={'center'}
       display={{ base: 'none', lg: 'flex' }}
       bg={'#2d2f36'}
@@ -129,26 +137,27 @@ export const PokemonItem = ({
       {inViewData &&
         inViewData.map((pokemon) => (
           <InView
-            key={`inView-${pokemon.id}`}
+            key={`inView-${pokemon?.id}`}
             delay={1000}
             threshold={1}
             triggerOnce={true}
             onChange={(inView, entry) => {
               setInView;
-              setInViewNum(pokemon.number.toString());
-              console.log('inView', pokemon.number);
+              setInViewNum(pokemon?.number.toString());
+              console.log('inView', pokemon?.number);
             }}
           >
             <NavItem
-              href={pokemon.name}
+              href={pokemon?.name}
               asPath={asPath}
-              name={pokemon.name}
-              number={pokemon.number}
-              image={pokemon.image}
+              name={pokemon?.name}
+              number={pokemon?.number}
+              image={pokemon?.image}
               inView={inView}
               inViewData={inViewData}
               setInViewData={setInViewData}
               inViewNum={inViewNum}
+              selected={selected}
             />
           </InView>
         ))}

@@ -23,12 +23,18 @@ export const PokemonDetail = ({
   data,
   inViewData,
   setInViewData,
+  selected,
+  name,
+  number,
 }: {
   data: Array<PokemonFragment>;
   inViewData?: Array<PokemonFragment>;
   setInViewData?: React.Dispatch<
     React.SetStateAction<PokemonFragment[]>
   >;
+  selected?: boolean;
+  name?: string;
+  number?: string;
 }) => {
   return (
     <Flex
@@ -45,6 +51,9 @@ export const PokemonDetail = ({
         inViewData={inViewData}
         setInViewData={setInViewData}
         data={data}
+        selected={selected}
+        name={name}
+        number={number}
       />
     </Flex>
   );
