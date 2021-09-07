@@ -1,6 +1,24 @@
-[[hiring]] [[luxor]]
+# Frontend Challenge 
+## Joem Elias Sanez
 
-# Frontend Challenge
+Development submission of PokeDex. Dashboard that dynamically animates a graph visualization as you scroll through the deck of data. The data exposes the varieties and relationships of weight/size to Combat Power/Hit Points of a given Pokemon. 
+
+Mock Sign in with:
+- `admin@admin.com`
+- `admin`
+## Development
+Currently in development, on `lux-dev` branch with a preview on vercel. Along with a production deployment on `main`. 
+
+[lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
+
+## Bugs
+- Intersection observer is not pairing well with NextJS SSR. 
+- useSWR config needs to be replaced with isomorphic-unfetch for auth (a mock is currently in place).
+- ...tbc
+ 
+
+
+### Brief
 
 This is a frontend project that simulates a potential real-life designer hand-off that is given to a software engineer to implement. You have 24 hours to complete this challenge.
 
