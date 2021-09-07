@@ -1,16 +1,10 @@
-import { Icon, IconProps, useColorModeValue, useTheme } from '@chakra-ui/react';
+import { Icon, IconProps, useTheme } from '@chakra-ui/react';
 
 export const Logo = (props: IconProps) => {
   const theme = useTheme();
 
-  const foreground = useColorModeValue(
-    theme.colors.green[400],
-    theme.colors.green[400]
-  );
-  const background = useColorModeValue(
-    theme.colors.green[100],
-    theme.colors.green[900]
-  );
+  const foreground = '#f1c857';
+  const background = '#3f414b';
 
   return (
     <Icon
@@ -19,7 +13,8 @@ export const Logo = (props: IconProps) => {
       viewBox="0 0 274 426"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+      {...props}
+    >
       <path
         d="M118.368 235.196H42.4719C33.2437 235.196 27.4691 225.214 32.069 217.214L135.965 36.5257C142.091 25.8727 158.368 30.2189 158.368 42.5073V195.196C158.368 217.288 140.459 235.196 118.368 235.196Z"
         fill={background}

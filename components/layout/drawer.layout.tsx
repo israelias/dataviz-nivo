@@ -18,10 +18,10 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Header } from '../header';
 import { Footer } from '../shared/Footer';
-import { Navigation } from '../shared/Navigation';
 import { PokemonItem } from '../deck';
 import { PokemonDetail } from '../pokemon';
 import { Logo } from '../shared/Logo';
+import { NavItem } from '../deck/navItem';
 import { PokemonFragment } from '../../@types/graphql';
 
 interface DrawerLayoutProps {
@@ -106,7 +106,13 @@ export const DrawerLayout = ({
               <Icon as={Logo} w={10} h={10} />
             </DrawerHeader>
             <DrawerBody>
-              <Navigation />
+              {isOpen && (
+                <PokemonDetail
+                  inViewData={inViewData}
+                  setInViewData={setInViewData}
+                  data={data}
+                />
+              )}
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

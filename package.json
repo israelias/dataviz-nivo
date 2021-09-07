@@ -23,7 +23,6 @@
     "@nivo/core": "^0.73.0",
     "@nivo/radar": "^0.73.0",
     "apollo-server-micro": "^3.3.0",
-    "chakra-paginator": "^0.7.3",
     "cross-fetch": "^3.1.4",
     "framer-motion": "^4",
     "graphql": "^15.5.2",
