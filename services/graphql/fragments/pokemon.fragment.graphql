@@ -4,6 +4,8 @@ fragment pokemon on Pokemon {
   name
   image
   classification
+  maxCP
+  maxHP
   weight {
     minimum
     maximum
