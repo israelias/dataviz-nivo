@@ -41,27 +41,42 @@ export const PokemonItem = ({
     React.SetStateAction<PokemonFragment[]>
   >;
 }) => {
-  const { asPath, pathname } = useRouter();
+  const { asPath } = useRouter();
   const [inView, setInView] = React.useState(false);
-  const { inViewNum, setInViewNum } = usePokemonsData();
+  const { inViewNum: providerNum, setInViewNum: providerSetNum } =
+    usePokemonsData();
+  const [inViewNum, setInViewNum] =
+    React.useState<string>(providerNum);
+  const first = inViewNum > '001';
+  // && inViewNum < '001';
+  const second = inViewNum > '026';
+  // && inViewNum < '026';
+  const third = inViewNum > '051';
+  // && inViewNum < '051';
+  const fourth = inViewNum > '076';
+  // && inViewNum < '076';
+  const fifth = inViewNum > '101';
+  // && inViewNum < '101';
+  const sixth = inViewNum > '126';
+  // && inViewNum < '126';
 
-  React.useMemo(() => {
-    if (inViewNum < 0o25 && inViewNum > 0o01) {
+  React.useEffect(() => {
+    if (first) {
       setInViewData(data.slice(0, 26));
-    } else if (inViewNum < 0o51 && inViewNum > 0o26) {
-      setInViewData(data.slice(0o25, 51));
-    } else if (inViewNum < 0o76 && inViewNum > 0o51) {
+    } else if (second) {
+      setInViewData(data.slice(25, 51));
+    } else if (third) {
       setInViewData(data.slice(50, 76));
-    } else if (inViewNum < 101 && inViewNum > 0o76) {
+    } else if (fourth) {
       setInViewData(data.slice(75, 101));
-    } else if (inViewNum < 126 && inViewNum > 101) {
+    } else if (fifth) {
       setInViewData(data.slice(100, 126));
-    } else if (inViewNum < 151 && inViewNum > 126) {
+    } else if (sixth) {
       setInViewData(data.slice(125, 151));
     } else {
       setInViewData(data.slice(25, 51));
     }
-  }, [inViewNum]);
+  }, []);
 
   return (
     <Stack
@@ -81,10 +96,14 @@ export const PokemonItem = ({
         inViewData.map((pokemon) => (
           <InView
             key={`inView-${pokemon.id}`}
+            delay={1000}
+            threshold={1}
+            triggerOnce={true}
             onChange={(inView, entry) => {
               setInView;
-
-              console.log('Inview:', inView, pokemon.name);
+              setInViewNum(pokemon.number.toString());
+              console.log('inView', pokemon.number);
+              // console.log('Inview:', inView, pokemon.name);
             }}
           >
             <NavItem

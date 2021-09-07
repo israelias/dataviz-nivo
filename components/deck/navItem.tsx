@@ -1,18 +1,9 @@
 import React from 'react';
 import NextLink from 'next/link';
 
-import {
-  Link,
-  useColorModeValue,
-  Stack,
-  HStack,
-  Avatar,
-  Text,
-  StyleProps,
-} from '@chakra-ui/react';
+import { Link, Stack, HStack, Avatar, Text } from '@chakra-ui/react';
 
 import { PokemonFragment } from '../../@types/graphql';
-import { usePokemonsData } from '../../context/pokemon.context';
 
 export const PokemonAvatar = ({
   name,
@@ -23,27 +14,6 @@ export const PokemonAvatar = ({
 }) => {
   return (
     <Avatar height={'44px'} width={'44px'} name={name} src={image} />
-  );
-};
-
-type WrapperProps = {
-  children: React.ReactNode;
-};
-
-const Wrapper = () => {
-  React.forwardRef<HTMLDivElement, WrapperProps>(
-    ({ children }, ref) => (
-      <Stack
-        as="div"
-        height={'75px'}
-        minWidth={'300px'}
-        maxWidth={'380px'}
-        spacing={1}
-        ref={ref}
-      >
-        {children}
-      </Stack>
-    )
   );
 };
 
@@ -64,15 +34,13 @@ export const NavItem = ({
   name: string;
   image: string;
   number: string;
-  inViewNum?: number;
+  inViewNum?: string;
   inViewData?: Array<PokemonFragment>;
   setInViewData?: React.Dispatch<
     React.SetStateAction<PokemonFragment[]>
   >;
 }) => {
-  const isActive = asPath === href || inViewNum === parseInt(number);
-
-  const activeBg = useColorModeValue('green.50', 'green.900');
+  const isActive = asPath === href || inViewNum === number;
   const forwardRef = React.useRef<HTMLDivElement>();
 
   return (
