@@ -2,8 +2,6 @@ import {
   Stack,
   Box,
   BoxProps,
-  Popover,
-  PopoverTrigger,
   Link,
   useColorModeValue,
   PopoverContent,
@@ -13,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-import { NAV_ITEMS, NavItem } from './navData';
+import { NavItem } from './navData';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 export const DesktopNav = (props: BoxProps) => {

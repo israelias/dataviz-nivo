@@ -1,15 +1,7 @@
 import React, { ReactNode } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Link,
-  Avatar,
-  HStack,
-  Stack,
-  Text,
-  StackProps,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Avatar, Stack } from '@chakra-ui/react';
 
 import { InView } from 'react-intersection-observer';
 
@@ -63,20 +55,62 @@ export const PokemonItem = ({
   React.useEffect(() => {
     if (first) {
       setInViewData(data.slice(0, 26));
-    } else if (second) {
-      setInViewData(data.slice(25, 51));
-    } else if (third) {
-      setInViewData(data.slice(50, 76));
-    } else if (fourth) {
-      setInViewData(data.slice(75, 101));
-    } else if (fifth) {
-      setInViewData(data.slice(100, 126));
-    } else if (sixth) {
-      setInViewData(data.slice(125, 151));
-    } else {
+    }
+  }, [first]);
+  React.useEffect(() => {
+    if (second) {
       setInViewData(data.slice(25, 51));
     }
-  }, []);
+  }, [second]);
+  React.useEffect(() => {
+    if (third) {
+      setInViewData(data.slice(50, 76));
+    }
+  }, [third]);
+  React.useEffect(() => {
+    if (fourth) {
+      setInViewData(data.slice(75, 101));
+    }
+  }, [fourth]);
+  React.useEffect(() => {
+    if (fifth) {
+      setInViewData(data.slice(100, 126));
+    }
+  }, [fifth]);
+  React.useEffect(() => {
+    if (sixth) {
+      setInViewData(data.slice(125, 151));
+    }
+  }, [sixth]);
+
+  // React.useEffect(() => {
+  //   if (first) {
+  //     setInViewData(data.slice(0, 26));
+
+  //   }
+  //   if (second) {
+  //     setInViewData(data.slice(25, 51));
+
+  //   }
+  //   if (third) {
+  //     setInViewData(data.slice(50, 76));
+
+  //   }
+  //   if (fourth) {
+  //     setInViewData(data.slice(75, 101));
+
+  //   }
+  //   if (fifth) {
+  //     setInViewData(data.slice(100, 126));
+
+  //   }
+  //   if (sixth) {
+  //     setInViewData(data.slice(125, 151));
+
+  //   }
+  //   setInViewData(data.slice(25, 51));
+
+  // }, [inViewNum]);
 
   return (
     <Stack
@@ -103,7 +137,6 @@ export const PokemonItem = ({
               setInView;
               setInViewNum(pokemon.number.toString());
               console.log('inView', pokemon.number);
-              // console.log('Inview:', inView, pokemon.name);
             }}
           >
             <NavItem

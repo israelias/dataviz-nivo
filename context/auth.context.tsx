@@ -2,32 +2,6 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { storage } from '../lib/storage';
-// import fetch from 'cross-fetch';
-
-// import {
-//   Fetcher,
-//   Key,
-//   useSWR,
-//   SWRResponse,
-//   SWRConfiguration,
-//   SWRHook,
-// } from 'swr';
-
-// import userFetcher from '../lib/user';
-
-// function useUser() {
-//   const { data, mutate, error } = useSWR('api_user', userFetcher);
-
-//   const loading = !data && !error;
-//   const loggedOut = error && error.status === 403;
-
-//   return {
-//     loading,
-//     loggedOut,
-//     user: data,
-//     mutate,
-//   };
-// }
 
 export type AuthContext = {
   loggedIn: boolean;
@@ -41,9 +15,6 @@ export type AuthContext = {
   handleSignIn: (
     e: React.FormEvent<HTMLFormElement>
   ) => Promise<void>;
-  // handleSignOut: (
-  //   e: React.MouseEvent<HTMLButtonElement>
-  // ) => Promise<void>;
 };
 
 export const AuthContext = React.createContext<AuthContext>(
@@ -67,69 +38,59 @@ export default function AuthProvider({
   ) => {
     e.preventDefault();
     setLoading(true);
-    await fetch(
-      new Request('/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        // credentials: 'include',
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      })
-    ).then((response) => {
-      if (response.ok) {
-        setEmail('');
-        setPassword('');
-        setLoggedIn(true);
-        storage.setUserLocal(email);
-        history.push({
-          pathname: '/pokemons',
-        });
-      } else {
-        console.log(response);
-        setEmail('');
-        setLoggedIn(false);
-        storage.clearUserLocal();
-        storage.setLogoutEvent();
-      }
-    });
+    if (email === 'admin@admin.com' && password === 'admin') {
+      // setEmail('');
+      setPassword('');
+      setLoggedIn(true);
+      storage.setUserLocal(email);
+      history.push('/pokemons');
+    } else {
+      setEmail('');
+      setLoggedIn(false);
+      storage.clearUserLocal();
+      storage.setLogoutEvent();
+    }
+    // TODO
+    // SSR FETCHING is not working in production.
+    // Mock Auth for the time being.
+
+    // await fetch(
+    //   new Request('/api', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     // credentials: 'include',
+    //     body: JSON.stringify({
+    //       email,
+    //       password,
+    //     }),
+    //   })
+    // ).then((response) => {
+    //   if (response.ok) {
+    //     setEmail('');
+    //     setPassword('');
+    //     setLoggedIn(true);
+    //     storage.setUserLocal(email);
+    //     history.push({
+    //       pathname: '/pokemons',
+    //     });
+    //   } else {
+
+    //     setEmail('');
+    //     setLoggedIn(false);
+    //     storage.clearUserLocal();
+    //     storage.setLogoutEvent();
+    //   }
+    // });
   };
 
-  React.useEffect(() => {
-    function checkUserData(e: StorageEvent) {
-      if (e.key === 'app_logout') {
-        setEmail('');
-        setLoggedIn(false);
-        storage.clearUserLocal();
-        storage.setLogoutEvent();
-      }
-    }
-    window.addEventListener('storage', (e) => checkUserData(e));
-    return () => {
-      window.removeEventListener('storage', (e) => checkUserData(e));
-    };
-  }, []);
-
   // React.useEffect(() => {
-  //   if (!(username || accessToken)) {
+  //   if (!email) {
   //     history.push('/');
   //     setLoggedIn(false);
-  //     setReturning(true);
-  //     toast({
-  //       duration: 3000,
-  //       isClosable: true,
-  //       render: () => (
-  //         <Prompt
-  //           error
-  //           message="Oops. It seems you've been logged out."
-  //         />
-  //       ),
-  //     });
   //   }
-  // }, [username, accessToken]);
+  // }, [email]);
 
   return (
     <AuthContext.Provider
