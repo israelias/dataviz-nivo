@@ -9,7 +9,9 @@ Mock Sign in with:
 ## Development
 Currently in development, on `lux-dev` branch with a preview on vercel. Along with a production deployment on `main`. 
 
+- Dev 
 [lux-dev.vercel.app](https://lux-dev.vercel.app/)
+- Prod
 [lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
 
 ## Bugs
