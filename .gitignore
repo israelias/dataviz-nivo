@@ -32,3 +32,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# editor
+.vscode
+.idea
+
+
+*.graphql.d.ts
+*.graphqls.d.ts
