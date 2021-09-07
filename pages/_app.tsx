@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import Head from 'next/head';
 import NProgress from 'nprogress';
-import { AppProps } from 'next/app';
+import { AppProps, NextWebVitalsMetric } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { ApolloProvider } from '@apollo/client';
@@ -47,4 +47,8 @@ export default function App({ Component, pageProps }: AppProps) {
       </PokemonsDataProvider>
     </ApolloProvider>
   );
+}
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  console.log(metric);
 }
