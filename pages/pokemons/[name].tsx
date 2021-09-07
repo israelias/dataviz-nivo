@@ -1,17 +1,34 @@
+import React from 'react';
+import { Stack, Heading, Text } from '@chakra-ui/react';
 import {
   PageGetPokemonByNameComp,
   ssrGetPokemonByName,
   ssrGetAllPokemons,
-} from '../lib/hooks';
+} from '../../lib/hooks';
 
-import { withApollo, initializeApollo } from '../lib/apollo';
+import { usePokemonsData } from '../../context/pokemon.context';
+
+import { DrawerLayout } from '../../components/layout/drawer.layout';
+import { PokemonFragment } from '../../@types/graphql';
+
+import { withApollo, initializeApollo } from '../../lib/apollo';
 import { GetServerSideProps, GetStaticPaths } from 'next';
 
 const PokemonByNamePage: PageGetPokemonByNameComp = (props) => {
+  const { setInViewNum } = usePokemonsData();
+
+  const { data } = ssrGetAllPokemons.usePage();
+
+  React.useEffect(() => {
+    if (props.data) {
+      setInViewNum(props.data.pokemon.number.toString());
+    }
+  }, []);
+
   return (
-    <div>
+    <DrawerLayout data={data?.pokemons}>
       <p>{props?.data?.pokemon?.name ?? 'Loading'}</p>
-    </div>
+    </DrawerLayout>
   );
 };
 
@@ -37,24 +54,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: { res },
   };
 };
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const apolloClient = initializeApollo();
-
-//   const { props } = await ssrGetAllPokemons.getServerPage(
-//     {},
-//     apolloClient
-//   );
-//   const paths =
-//     props?.data?.pokemons.map((pokemon) => ({
-//       params: { name: pokemon.name },
-//     })) || [];
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
 
 export default withApollo(
   ssrGetPokemonByName.withPage((arg) => ({
