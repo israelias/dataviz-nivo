@@ -34,10 +34,7 @@ export const Header = () => {
         justify={'center'}
         css={{
           backdropFilter: 'saturate(180%) blur(5px)',
-          backgroundColor: useColorModeValue(
-            'rgba(255, 255, 255, 0.8)',
-            'rgba(26, 32, 44, 0.8)'
-          ),
+          backgroundColor: '#3b3e46',
         }}
       >
         <Container as={Flex} maxW={'7xl'} align={'center'}>

@@ -68,6 +68,7 @@ const LoginPage: PageGetAllPokemonsComp = () => {
                 _placeholder={{ color: 'gray.500' }}
                 border="1px solid"
                 borderColor="transparent"
+                color={'white'}
                 _focus={{
                   borderColor: '#f1c857',
                 }}
@@ -82,6 +83,7 @@ const LoginPage: PageGetAllPokemonsComp = () => {
                 type="password"
                 border="1px solid"
                 borderColor="transparent"
+                color={'white'}
                 _focus={{
                   borderColor: '#f1c857',
                 }}
