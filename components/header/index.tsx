@@ -5,22 +5,25 @@ import {
   Stack,
   useDisclosure,
   IconButton,
-  useColorModeValue,
   Icon,
-  useColorMode,
   Heading,
 } from '@chakra-ui/react';
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import {
+  CloseIcon,
+  HamburgerIcon,
+  ArrowBackIcon,
+} from '@chakra-ui/icons';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Logo } from '../shared/Logo';
 import { TextUnderline } from '../shared/TextUnderline';
 import { MobileNav } from './mobilenav.header';
 import { DesktopNav } from './desktopnav.header';
 
-export const Header = () => {
+export const Header = ({ selected }: { selected?: boolean }) => {
   const { isOpen: isMobileNavOpen, onToggle } = useDisclosure();
-
+  const router = useRouter();
   return (
     <Box>
       <Flex
@@ -74,6 +77,7 @@ export const Header = () => {
                 <Heading
                   as={'h1'}
                   fontSize={'xl'}
+                  color={'#b0964c'}
                   display={{ base: 'none', md: 'block' }}
                 >
                   <TextUnderline>Poke</TextUnderline>dex
@@ -90,6 +94,16 @@ export const Header = () => {
             justify={'flex-end'}
           >
             <DesktopNav display={{ base: 'none', md: 'flex' }} />
+            {selected && (
+              <IconButton
+                size={'sm'}
+                variant={'outline'}
+                borderColor={'#f1c857'}
+                aria-label={'Toggle Color Mode'}
+                onClick={() => router.back()}
+                icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
+              />
+            )}
           </Stack>
         </Container>
       </Flex>

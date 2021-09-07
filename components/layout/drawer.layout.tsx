@@ -27,10 +27,16 @@ import { PokemonFragment } from '../../@types/graphql';
 interface DrawerLayoutProps {
   children?: ReactNode;
   data: Array<PokemonFragment>;
+  selected?: boolean;
+  name?: string;
+  number?: string;
 }
 
 export const DrawerLayout = ({
   children,
+  selected,
+  name,
+  number,
   data,
 }: DrawerLayoutProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,15 +53,15 @@ export const DrawerLayout = ({
   const [inViewData, setInViewData] =
     React.useState<PokemonFragment[]>(data);
 
-  // React.useEffect(() => {
-  //   if (data) {
-  //     setInViewData(data.slice(0, 26));
-  //   }
-  // }, [data]);
+  React.useEffect(() => {
+    if (selected) {
+      setInViewData(data.slice(0, 26));
+    }
+  }, [data]);
 
   return (
     <>
-      <Header />
+      <Header selected={selected} />
       <Container maxW={'7xl'} flex={'1 0 auto'} py={8}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
@@ -65,11 +71,17 @@ export const DrawerLayout = ({
             inViewData={inViewData}
             setInViewData={setInViewData}
             data={data}
+            selected={selected}
+            name={name}
+            number={number}
           />
           <PokemonDetail
             inViewData={inViewData}
             setInViewData={setInViewData}
             data={data}
+            selected={selected}
+            name={name}
+            number={number}
           />
         </Stack>
       </Container>

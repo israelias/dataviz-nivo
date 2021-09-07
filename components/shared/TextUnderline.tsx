@@ -21,7 +21,8 @@ export const TextUnderline = ({ children }: TextUnderlineProps) => {
         h: '30%',
         bg: useColorModeValue('green.100', 'green.900'),
         zIndex: -1,
-      }}>
+      }}
+    >
       {children}
     </Box>
   );
