@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { Header } from '../header';
-import { Footer } from '../shared/Footer';
+import { Footer } from '../shared/footer';
 
 interface AppLayoutProps {
   children: ReactNode;

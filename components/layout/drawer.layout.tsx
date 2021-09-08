@@ -13,23 +13,29 @@ import {
   DrawerBody,
   useDisclosure,
   IconButton,
+  Box,
 } from '@chakra-ui/react';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Header } from '../header';
-import { Footer } from '../shared/Footer';
-import { PokemonItem } from '../deck';
-import { PokemonDetail } from '../pokemon';
-import { Logo } from '../shared/Logo';
-import { NavItem } from '../deck/navItem';
+import { Footer } from '../shared/footer';
+
+import { PokemonDetail } from '../pokemon/item';
+import { Logo } from '../shared/logo';
+
 import { PokemonFragment } from '../../@types/graphql';
 
+import PokemonDex from '../pokemon/list';
+import Pagination from '../pagination';
+import Details from '../pokemon/item/details';
 interface DrawerLayoutProps {
   children?: ReactNode;
   data: Array<PokemonFragment>;
   selected?: boolean;
   name?: string;
   number?: string;
+  id?: string;
+  xParam?: string;
 }
 
 export const DrawerLayout = ({
@@ -38,6 +44,8 @@ export const DrawerLayout = ({
   name,
   number,
   data,
+  id,
+  xParam,
 }: DrawerLayoutProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
@@ -53,28 +61,33 @@ export const DrawerLayout = ({
   const [inViewData, setInViewData] =
     React.useState<PokemonFragment[]>(data);
 
-  React.useEffect(() => {
-    if (selected) {
-      setInViewData(data.slice(0, 26));
-    }
-  }, [data]);
-
   return (
     <>
-      <Header selected={selected} />
+      <Header
+        selected={selected}
+        number={number}
+        id={id}
+        name={name}
+      />
       <Container maxW={'7xl'} flex={'1 0 auto'} py={8}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
           spacing={{ base: 0, lg: 8 }}
         >
-          <PokemonItem
-            inViewData={inViewData}
-            setInViewData={setInViewData}
-            data={data}
-            selected={selected}
-            name={name}
-            number={number}
-          />
+          {selected ? (
+            <Details id={id} name={name} number={number} />
+          ) : (
+            <PokemonDex
+              inViewData={inViewData}
+              setInViewData={setInViewData}
+              data={data}
+              selected={selected}
+              name={name}
+              number={number}
+              xParam={xParam}
+            />
+          )}
+
           <PokemonDetail
             inViewData={inViewData}
             setInViewData={setInViewData}
@@ -82,6 +95,7 @@ export const DrawerLayout = ({
             selected={selected}
             name={name}
             number={number}
+            xParam={xParam}
           />
         </Stack>
       </Container>
