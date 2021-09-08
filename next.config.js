@@ -6,6 +6,7 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+
   webpack(config, options) {
     config.module.rules.push({
       test: /\.graphql$/,
@@ -28,9 +29,22 @@ module.exports = {
       use: 'yaml-loader',
     });
 
+    const fileLoaderRule = config.module.rules.find(
+      (rule) => rule.test && rule.test.test('.svg')
+    );
+    fileLoaderRule.exclude = /\.svg$/;
+
     config.module.rules.push({
+      loader: '@svgr/webpack',
+      options: {
+        prettier: false,
+        svgo: true,
+        svgoConfig: {
+          plugins: [{ removeViewBox: false }],
+        },
+        titleProp: true,
+      },
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
     });
 
     return config;
