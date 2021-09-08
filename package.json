@@ -21,6 +21,7 @@
     "@emotion/styled": "^11",
     "@nivo/core": "^0.73.0",
     "@nivo/radar": "^0.73.0",
+    "@svgr/webpack": "^5.5.0",
     "cross-fetch": "^3.1.4",
     "framer-motion": "^4",
     "graphql": "^15.5.2",
