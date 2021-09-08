@@ -44,6 +44,7 @@ const Pagination = ({
         >
           <Button
             fontSize="10px"
+            height="44px"
             size="sm"
             disabled={!hasPrev}
             onClick={() => setPage(page - 1)}
