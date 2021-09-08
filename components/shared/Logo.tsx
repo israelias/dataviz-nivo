@@ -34,3 +34,5 @@ export const Logo = (props: IconProps) => {
     </Icon>
   );
 };
+
+export default Logo;

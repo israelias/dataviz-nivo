@@ -19,7 +19,7 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Header } from '../header';
 
 import { PokemonDetail } from '../pokemon/item';
-import { Logo } from '../shared/logo';
+import Logo from '../shared/logo';
 
 import { PokemonFragment } from '../../@types/graphql';
 
