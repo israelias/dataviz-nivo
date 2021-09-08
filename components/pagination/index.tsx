@@ -40,6 +40,7 @@ const Pagination = ({
           spacing={8}
           alignItems="center"
           width="100%"
+          bg=""
           justifyContent="space-between"
         >
           <Button
@@ -47,7 +48,7 @@ const Pagination = ({
             height="44px"
             size="sm"
             disabled={!hasPrev}
-            bf={'#3b3e46'}
+            bg={'#3b3e46'}
             color={'#fafafa'}
             onClick={() => setPage(page - 1)}
           >
@@ -59,7 +60,7 @@ const Pagination = ({
             size="sm"
             disabled={!hasNext}
             onClick={() => setPage(page + 1)}
-            bh={'#3b3e46'}
+            bg={'#3b3e46'}
             color={'#fafafa'}
           >
             Next
