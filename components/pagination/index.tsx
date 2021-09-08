@@ -26,7 +26,7 @@ const Pagination = ({
       position="sticky"
       width="100%"
       maxWidth={{ base: '100vw' }}
-      bg={mode('#fff', '#141625')}
+      bg={'#141625'}
     >
       <Flex
         alignItems="center"
@@ -47,6 +47,8 @@ const Pagination = ({
             height="44px"
             size="sm"
             disabled={!hasPrev}
+            bf={'#3b3e46'}
+            color={'#fafafa'}
             onClick={() => setPage(page - 1)}
           >
             Previous
@@ -57,6 +59,8 @@ const Pagination = ({
             size="sm"
             disabled={!hasNext}
             onClick={() => setPage(page + 1)}
+            bh={'#3b3e46'}
+            color={'#fafafa'}
           >
             Next
           </Button>
