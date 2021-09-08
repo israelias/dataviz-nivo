@@ -12,7 +12,7 @@ import {
 import NextLink from 'next/link';
 import NextImage from 'next/image';
 
-import { Logo } from './Logo';
+import { Logo } from './logo';
 import { ReactNode } from 'react';
 
 const SOCIAL_LINKS = [
