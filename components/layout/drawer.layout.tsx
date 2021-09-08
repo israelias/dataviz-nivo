@@ -13,12 +13,11 @@ import {
   DrawerBody,
   useDisclosure,
   IconButton,
-  Box,
+
 } from '@chakra-ui/react';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Header } from '../header';
-import { Footer } from '../shared/footer';
 
 import { PokemonDetail } from '../pokemon/item';
 import { Logo } from '../shared/logo';
@@ -99,7 +98,7 @@ export const DrawerLayout = ({
           />
         </Stack>
       </Container>
-      <Footer />
+      < />
 
       <IconButton
         display={{ base: 'block', lg: 'none' }}
