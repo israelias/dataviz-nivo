@@ -43,12 +43,17 @@ const Pagination = ({
           justifyContent="space-between"
         >
           <Button
+            fontSize="10px"
+            size="sm"
             disabled={!hasPrev}
             onClick={() => setPage(page - 1)}
           >
             Previous
           </Button>
           <Button
+            fontSize="10px"
+            height="44px"
+            size="sm"
             disabled={!hasNext}
             onClick={() => setPage(page + 1)}
           >

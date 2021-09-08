@@ -160,7 +160,7 @@ const PokemonDex = ({
           mt="auto"
           pt="16px"
           ml={{ base: '20%vw', lg: '10vw' }}
-          spacing={{ base: 0, lg: 8 }}
+          // spacing={{ base: 0, lg: 8 }}
           right={0}
           mr={'75vw'}
         >
