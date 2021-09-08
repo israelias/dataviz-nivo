@@ -1,0 +1,7 @@
+query GetPaginatedCount {
+  pokemons(first: 151) {
+    number
+  }
+}
+
+# export default GetPaginatedCount
