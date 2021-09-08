@@ -16,7 +16,6 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { Logo } from '../shared/logo';
 import { TextUnderline } from '../shared/underline';
 import { MobileNav } from './mobilenav.header';
 import { DesktopNav } from './desktopnav.header';
@@ -89,7 +88,6 @@ export const Header = ({
                 alignItems={'center'}
                 spacing={{ base: 2, sm: 4 }}
               >
-                <Icon as={Logo} w={{ base: 8 }} h={{ base: 8 }} />
                 <Heading
                   as={'h1'}
                   fontSize={'xl'}

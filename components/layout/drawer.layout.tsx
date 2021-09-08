@@ -19,7 +19,6 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Header } from '../header';
 
 import { PokemonDetail } from '../pokemon/item';
-import Logo from '../shared/logo';
 
 import { PokemonFragment } from '../../@types/graphql';
 
@@ -125,9 +124,7 @@ export const DrawerLayout = ({
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>
-              {/* <Icon as={Logo} w={10} h={10} /> */}
-            </DrawerHeader>
+            <DrawerHeader></DrawerHeader>
             <DrawerBody>
               {isOpen && (
                 <PokemonDetail
