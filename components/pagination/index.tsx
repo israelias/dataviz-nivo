@@ -26,7 +26,7 @@ const Pagination = ({
       position="sticky"
       width="100%"
       maxWidth={{ base: '100vw' }}
-      bg={'#141625'}
+      bg={'#1f1f1f'}
     >
       <Flex
         alignItems="center"
