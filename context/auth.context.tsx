@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { storage } from '../lib/storage';
 
 export type AuthContext = {
@@ -32,6 +33,7 @@ export default function AuthProvider({
   const [password, setPassword] = React.useState('');
 
   const history = useRouter();
+  // router.push('/?counter=10', '/about?counter=10', { shallow: true });
 
   const handleSignIn = async (
     e: React.FormEvent<HTMLFormElement>
@@ -43,7 +45,9 @@ export default function AuthProvider({
       setPassword('');
       setLoggedIn(true);
       storage.setUserLocal(email);
-      history.push('/pokemons');
+      Router.push({
+        pathname: '/pokemons',
+      });
     } else {
       setEmail('');
       setLoggedIn(false);
