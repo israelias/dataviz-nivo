@@ -1,40 +1,27 @@
 import React from 'react';
-import {
-  Box,
-  Text,
-  HStack,
-  IconButton,
-  Flex,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import Link from 'next/link';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Flex } from '@chakra-ui/react';
 
-import { Pokemon, PokemonFragment } from '../../@types/graphql';
+import { PokemonFragment } from '../../../@types/graphql';
 
-import { Radar } from './radar';
-
-export const PokemonDetail = ({
+export const WrapperItem = ({
   data,
   inViewData,
   setInViewData,
   selected,
   name,
   number,
+  children,
 }: {
   data: Array<PokemonFragment>;
   inViewData?: Array<PokemonFragment>;
   setInViewData?: React.Dispatch<
     React.SetStateAction<PokemonFragment[]>
   >;
+  children: React.ReactNode;
   selected?: boolean;
   name?: string;
   number?: string;
+  xParam?: string;
 }) => {
   return (
     <Flex
@@ -47,14 +34,9 @@ export const PokemonDetail = ({
       py={8}
       mt={20}
     >
-      <Radar
-        inViewData={inViewData}
-        setInViewData={setInViewData}
-        data={data}
-        selected={selected}
-        name={name}
-        number={number}
-      />
+      {children}
     </Flex>
   );
 };
+
+export default WrapperItem;

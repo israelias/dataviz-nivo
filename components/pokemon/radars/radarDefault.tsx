@@ -3,11 +3,12 @@ import { ResponsiveRadar } from '@nivo/radar';
 import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
-import { PokemonFragment } from '../../@types/graphql';
-import { usePokemonsData } from '../../context/pokemon.context';
+import { PokemonFragment } from '../../../@types/graphql';
+import { usePokemonsData } from '../../../context/pokemon.context';
+import { DexTheme } from './configs';
 
 const MotionBox = motion(Box);
-export const Radar = ({
+export const RadarDefault = ({
   data,
   inViewData,
   setInViewData,
@@ -25,53 +26,37 @@ export const Radar = ({
   number?: string;
 }) => {
   const { inViewNum } = usePokemonsData();
-  const local =
-    inViewData &&
-    inViewData.map((d) => ({
-      name: d?.name,
-      maxCP: d?.maxCP,
-      maxHP: d?.maxHP,
-    }));
 
-  const borderWidth = selected ? 5 : 2;
-  const gridLevels = selected ? 12 : 5;
-  const gridShape = selected ? 'linear' : 'circular';
-  const dotSize = selected ? 30 : 10;
-  const dotBorderColor = selected
-    ? { labels: { text: 'fill' } }
-    : { from: 'color' };
-  const fillOpacity = selected ? 1 : 0.25;
   return (
     <MotionBox height="80vh">
       {inViewData && (
         <ResponsiveRadar
+          key={'default-radar'}
           data={inViewData.map((d) => ({
             name: d?.name,
             maxCP: d?.maxCP,
             maxHP: d?.maxHP,
           }))}
-          keys={['maxCP', 'maxHP']}
+          keys={['maxCP', 'maxHP', 'name']}
           indexBy="name"
           maxValue="auto"
-          margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
+          margin={{ top: 70, right: 80, bottom: 40, left: 120 }}
           curve="linearClosed"
-          borderWidth={borderWidth}
+          borderWidth={2}
           borderColor={{ from: 'color' }}
-          gridLevels={gridLevels}
-          gridShape={gridShape}
+          gridLevels={5}
+          gridShape="circular"
           gridLabelOffset={36}
           enableDots={true}
-          dotSize={dotSize}
+          dotSize={10}
           dotColor={{ theme: 'background' }}
           dotBorderWidth={2}
-          dotBorderColor={{
-            from: selected ? 'labels.text.fill' : 'color',
-          }}
+          dotBorderColor={{ from: 'color' }}
           enableDotLabel={true}
           dotLabel="value"
           dotLabelYOffset={-12}
           colors={{ scheme: 'nivo' }}
-          fillOpacity={fillOpacity}
+          fillOpacity={0.25}
           blendMode="multiply"
           animate={true}
           // @ts-ignore
@@ -103,3 +88,5 @@ export const Radar = ({
     </MotionBox>
   );
 };
+
+export default RadarDefault;
