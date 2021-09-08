@@ -16,14 +16,28 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { Logo } from '../shared/Logo';
-import { TextUnderline } from '../shared/TextUnderline';
+import { Logo } from '../shared/logo';
+import { TextUnderline } from '../shared/underline';
 import { MobileNav } from './mobilenav.header';
 import { DesktopNav } from './desktopnav.header';
+import { useAuth } from '../../context/auth.context';
 
-export const Header = ({ selected }: { selected?: boolean }) => {
+export const Header = ({
+  selected,
+  name,
+  number,
+  id,
+}: {
+  selected?: boolean;
+  name?: string;
+  id?;
+  number?;
+}) => {
   const { isOpen: isMobileNavOpen, onToggle } = useDisclosure();
+  const { loggedIn, email } = useAuth();
   const router = useRouter();
+  const show = router.pathname.includes(name);
+
   return (
     <Box>
       <Flex
@@ -94,16 +108,17 @@ export const Header = ({ selected }: { selected?: boolean }) => {
             justify={'flex-end'}
           >
             <DesktopNav display={{ base: 'none', md: 'flex' }} />
-            {selected && (
-              <IconButton
-                size={'sm'}
-                variant={'outline'}
-                borderColor={'#f1c857'}
-                aria-label={'Toggle Color Mode'}
-                onClick={() => router.back()}
-                icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
-              />
-            )}
+            {selected ||
+              (show && (
+                <IconButton
+                  size={'sm'}
+                  variant={'outline'}
+                  borderColor={'#f1c857'}
+                  aria-label={'Toggle Color Mode'}
+                  onClick={() => router.back()}
+                  icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
+                />
+              ))}
           </Stack>
         </Container>
       </Flex>

@@ -4,7 +4,6 @@ import {
   BoxProps,
   Link,
   useColorModeValue,
-  PopoverContent,
   Text,
   Flex,
   Icon,
