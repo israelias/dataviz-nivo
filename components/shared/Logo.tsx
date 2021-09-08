@@ -1,7 +1,7 @@
 import { Icon, IconProps, useTheme } from '@chakra-ui/react';
 
 export const Logo = (props: IconProps) => {
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const foreground = '#f1c857';
   const background = '#3f414b';

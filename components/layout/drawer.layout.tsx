@@ -126,7 +126,7 @@ export const DrawerLayout = ({
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>
-              <Icon as={Logo} w={10} h={10} />
+              {/* <Icon as={Logo} w={10} h={10} /> */}
             </DrawerHeader>
             <DrawerBody>
               {isOpen && (
