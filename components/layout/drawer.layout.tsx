@@ -13,7 +13,6 @@ import {
   DrawerBody,
   useDisclosure,
   IconButton,
-
 } from '@chakra-ui/react';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
@@ -98,7 +97,6 @@ export const DrawerLayout = ({
           />
         </Stack>
       </Container>
-      < />
 
       <IconButton
         display={{ base: 'block', lg: 'none' }}

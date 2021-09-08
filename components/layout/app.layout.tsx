@@ -11,7 +11,6 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
     <>
       <Header />
       {children}
-      < />
     </>
   );
 };

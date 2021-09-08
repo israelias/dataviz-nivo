@@ -38,6 +38,8 @@ export const Header = ({
   const router = useRouter();
   const show = router.pathname.includes(name);
 
+  console.log(router.pathname);
+
   return (
     <Box>
       <Flex
@@ -108,17 +110,16 @@ export const Header = ({
             justify={'flex-end'}
           >
             <DesktopNav display={{ base: 'none', md: 'flex' }} />
-            {selected ||
-              (show && (
-                <IconButton
-                  size={'sm'}
-                  variant={'outline'}
-                  borderColor={'#f1c857'}
-                  aria-label={'Toggle Color Mode'}
-                  onClick={() => router.back()}
-                  icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
-                />
-              ))}
+            {selected && (
+              <IconButton
+                size={'sm'}
+                variant={'outline'}
+                borderColor={'#f1c857'}
+                aria-label={'Toggle Color Mode'}
+                onClick={() => router.back()}
+                icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
+              />
+            )}
           </Stack>
         </Container>
       </Flex>
