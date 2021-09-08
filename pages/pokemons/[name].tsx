@@ -16,13 +16,15 @@ import { GetServerSideProps, GetStaticPaths } from 'next';
 const PokemonByNamePage: PageGetPokemonByNameComp = (props) => {
   const { setInViewNum } = usePokemonsData();
   const { data } = ssrGetAllPokemons.usePage();
+  console.log('name', data?.pokemons?.length);
 
   return (
     <DrawerLayout
       selected
+      id={props?.data?.pokemon?.id}
       number={props.data?.pokemon.number}
       name={props.data?.pokemon.name}
-      data={[props.data?.pokemon]}
+      data={[props?.data?.pokemon]}
     >
       <p>{props?.data?.pokemon?.name ?? 'Loading'}</p>
     </DrawerLayout>

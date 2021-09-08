@@ -12,7 +12,6 @@ import {
   PageGetAllPokemonsComp,
   ssrGetAllPokemons,
 } from '../lib/hooks';
-import Link from 'next/link';
 import { DrawerLayout } from '../components/layout/drawer.layout';
 import { AppLayout } from '../components/layout/app.layout';
 import { withApollo, initializeApollo } from '../lib/apollo';
@@ -24,9 +23,9 @@ import {
 } from '../context/pokemon.context';
 import React from 'react';
 
-const LoginPage: PageGetAllPokemonsComp = () => {
+const LoginPage: PageGetAllPokemonsComp = (props) => {
   const { dispatch } = usePokemonsData();
-
+  console.log('admin', props?.data?.pokemons?.length);
   const { data } = ssrGetAllPokemons.usePage();
 
   const history = useRouter();
@@ -115,7 +114,6 @@ const LoginPage: PageGetAllPokemonsComp = () => {
   );
 };
 
-// export default LoginPage;
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo();
   return await ssrGetAllPokemons.getServerPage({}, apolloClient);

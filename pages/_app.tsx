@@ -15,10 +15,10 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 export default function App({ Component, pageProps }: AppProps) {
-  const apolloClient = useApollo(pageProps);
+  // const apolloClient = useApollo(pageProps);
 
   return (
-    <ApolloProvider client={apolloClient}>
+    <>
       <PokemonsDataProvider>
         <AuthProvider>
           <ChakraProvider theme={theme}>
@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </ChakraProvider>
         </AuthProvider>
       </PokemonsDataProvider>
-    </ApolloProvider>
+    </>
   );
 }
 

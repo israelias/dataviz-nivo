@@ -22,7 +22,6 @@ const Error = ({ statusCode }) => {
         align={'center'}
         textAlign={'center'}
       >
-        {/* <Icon as={Logo} w={10} h={10} /> */}
         <Stack spacing={2}>
           <Heading>
             {statusCode ? statusCode.toString() : 'Page not found'}
