@@ -122,7 +122,7 @@ const Details = ({
   return (
     <Wrap spacing="30px" marginTop="5">
       <WrapItem
-        width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}
+        width={{ base: '100%', sm: '45%', md: '45%', lg: '75%' }}
       >
         <Box w="100%">
           <Box borderRadius="lg" overflow="hidden">
@@ -144,9 +144,13 @@ const Details = ({
             </Link>
           </Box>
           <Box>
-            {classification && <ClassTags tags={[classification]} />}
+            <Box>
+              {classification && (
+                <ClassTags tags={[classification]} />
+              )}
+            </Box>
 
-            <Heading fontSize="xl" marginTop="2">
+            <Heading color={'#f1c857'} fontSize="xl" marginTop="2">
               <Link
                 textDecoration="none"
                 _hover={{ textDecoration: 'none' }}
@@ -155,54 +159,52 @@ const Details = ({
               </Link>
             </Heading>
           </Box>
-
-          {name && image && (
-            <PokemonSignature
-              name={name}
-              image={image}
-              date={new Date('2021-04-06T19:01:27Z')}
-            />
-          )}
+          <Box>
+            {name && image && (
+              <PokemonSignature
+                name={name}
+                image={image}
+                date={new Date('2021-04-06T19:01:27Z')}
+              />
+            )}
+          </Box>
         </Box>
       </WrapItem>
-
-      <Wrap>
-        <WrapItem>
-          <SimpleGrid
-            columns={{ base: 1, md: 3 }}
-            spacing={{ base: 5, lg: 8 }}
-          >
-            {maxCP && (
-              <StatsCard
-                title={baseLg ? 'Maximum Combat Power ' : 'maxCP'}
-                stat={maxCP.toString()}
-                // icon={<BsPerson size={'3em'} />}
-              />
-            )}
-            {maxHP && (
-              <StatsCard
-                title={baseLg ? 'Maximum Hit Points ' : 'maxHP'}
-                stat={maxHP.toString()}
-                // icon={<FiServer size={'3em'} />}
-              />
-            )}
-            {height && (
-              <StatsCard
-                title={baseLg ? 'Height ' : 'Hgt'}
-                stat={height.toString()}
-                // icon={<GoLocation size={'3em'} />}
-              />
-            )}
-            {weight && (
-              <StatsCard
-                title={baseLg ? 'Weight ' : 'Wgt'}
-                stat={weight.toString()}
-                // icon={<GoLocation size={'3em'} />}
-              />
-            )}
-          </SimpleGrid>
-        </WrapItem>
-      </Wrap>
+      <WrapItem>
+        <SimpleGrid
+          columns={{ base: 1, md: 3 }}
+          spacing={{ base: 5, lg: 8 }}
+        >
+          {maxCP && (
+            <StatsCard
+              title={baseLg ? 'Maximum Combat Power ' : 'maxCP'}
+              stat={maxCP.toString()}
+              // icon={<BsPerson size={'3em'} />}
+            />
+          )}
+          {maxHP && (
+            <StatsCard
+              title={baseLg ? 'Maximum Hit Points ' : 'maxHP'}
+              stat={maxHP.toString()}
+              // icon={<FiServer size={'3em'} />}
+            />
+          )}
+          {height && (
+            <StatsCard
+              title={baseLg ? 'Height ' : 'Hgt'}
+              stat={height.toString()}
+              // icon={<GoLocation size={'3em'} />}
+            />
+          )}
+          {weight && (
+            <StatsCard
+              title={baseLg ? 'Weight ' : 'Wgt'}
+              stat={weight.toString()}
+              // icon={<GoLocation size={'3em'} />}
+            />
+          )}
+        </SimpleGrid>
+      </WrapItem>
     </Wrap>
   );
 };
