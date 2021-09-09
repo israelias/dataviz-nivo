@@ -48,21 +48,16 @@ export const NavItem = ({
   const isActive = asPath === href || inViewNum === number;
   const forwardRef = React.useRef<HTMLDivElement>();
   const router = useRouter();
+  // Option to use Shallow Routing that changes the URL without refreshing page
   // router.push('/?counter=10', '/about?counter=10', { shallow: true });
   return (
     <Stack
       ref={forwardRef}
       height={'75px'}
-      // width={'100%'}
       maxWidth={'320px'}
       spacing={1}
     >
       <NextLink
-        // onClick={() => {
-        //   router.push({
-        //     pathname: `/pokemons/${encodeURIComponent(href)}`,
-        //   });
-        // }}
         href={`/pokemons/${encodeURIComponent(href)}`}
         passHref
       >

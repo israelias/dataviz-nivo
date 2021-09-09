@@ -7,6 +7,7 @@ import { PokemonFragment } from '../../../@types/graphql';
 import { RadarDefault, RadarDetail, RadarRedux } from '../radars';
 
 import { PokemonSignature } from './details';
+
 export const PokemonDetail = ({
   data,
   inViewData,

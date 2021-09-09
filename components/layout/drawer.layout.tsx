@@ -3,9 +3,7 @@ import { useRouter } from 'next/router';
 import { ApolloError } from '@apollo/client';
 import {
   Container,
-  Flex,
   Stack,
-  Icon,
   Drawer,
   DrawerOverlay,
   DrawerContent,
@@ -18,14 +16,12 @@ import {
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Header } from '../header';
-
 import { PokemonDetail } from '../pokemon/item';
-import { usePokemonsData } from '../../context/pokemon.context';
 
+import { usePokemonsData } from '../../context/pokemon.context';
 import { PokemonFragment } from '../../@types/graphql';
-import { PokemonSignature } from '../pokemon/item/details';
+
 import PokemonDex from '../pokemon/list';
-import Pagination from '../pagination';
 import Details from '../pokemon/item/details';
 interface DrawerLayoutProps {
   children?: ReactNode;

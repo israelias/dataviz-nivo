@@ -34,8 +34,9 @@ export const InViewItem = ({
     threshold={1}
     triggerOnce={true}
     onChange={(inView, entry) => {
+      // TODO ReWrap InView/Observer around the returned sliced array of objects instead of one object
       // setInViewNum(number?.toString());
-      console.log('inView', number);
+      // console.log('inView', number);
     }}
   >
     {children}

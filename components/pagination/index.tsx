@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Flex,
-  HStack,
-  Stack,
-  Button,
-  useColorModeValue as mode,
-} from '@chakra-ui/react';
+import { Flex, HStack, Button } from '@chakra-ui/react';
 
 const Pagination = ({
   hasPrev,
@@ -27,7 +21,6 @@ const Pagination = ({
       zIndex={10}
       position="sticky"
       width="100%"
-      // maxWidth={{ base: '100vw' }}
       bg={'#1f1f1f'}
     >
       <Flex

@@ -43,17 +43,11 @@ const NavItem = ({
     <Stack
       ref={forwardRef}
       height={'75px'}
-      // width={'100%'}
       maxWidth={'320px'}
       spacing={1}
       cursor={'pointer'}
     >
       <NextLink
-        // onClick={() => {
-        //   router.push({
-        //     pathname: `/pokemons/${encodeURIComponent(href)}`,
-        //   });
-        // }}
         href={`/pokemons/${encodeURIComponent(href)}`}
         passHref
       >

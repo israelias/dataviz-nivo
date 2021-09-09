@@ -13,12 +13,10 @@ import {
   useColorModeValue,
   Flex,
   SimpleGrid,
-  VStack,
   Stat,
   StatLabel,
   StatNumber,
   Stack,
-  Container,
 } from '@chakra-ui/react';
 
 import { ReactNode } from 'react';
@@ -138,14 +136,12 @@ const Details = ({
       py={8}
       mt={16}
       zIndex={-1}
-      // height={selected ? '100vh' : 'unset'}
       as={'section'}
       spacing={1}
       maxW={{ md: '360px' }}
       w={'100%'}
       flexShrink={0}
       pl={'24px'}
-      // position={selected ? 'absolute' : 'unset'}
       justifyContent={'center'}
       display={{ base: 'none', lg: 'flex' }}
       bg={'#2d2f36'}
@@ -219,7 +215,6 @@ const Details = ({
           alignItems="flex-start"
         >
           <SimpleGrid
-            // pr={'16px'}
             columns={{ base: 1, md: 3 }}
             spacing={{ base: 5, lg: 4 }}
           >
@@ -227,6 +222,7 @@ const Details = ({
               <StatsCard
                 title={'maxCP'}
                 stat={maxCP.toString()}
+                // TODO add CP icon
                 // icon={<BsPerson size={'3em'} />}
               />
             )}
@@ -234,6 +230,7 @@ const Details = ({
               <StatsCard
                 title={'maxHP'}
                 stat={maxHP.toString()}
+                //TODO add HP icon
                 // icon={<FiServer size={'3em'} />}
               />
             )}
@@ -242,11 +239,13 @@ const Details = ({
                 <StatsCard
                   title={'Min Hgt'}
                   stat={height.minimum.toString()}
+                  // TODO add minHgt Icon
                   // icon={<GoLocation size={'3em'} />}
                 />
                 <StatsCard
                   title={'Max Hgt'}
                   stat={height.maximum.toString()}
+                  // TODO add MaxHgt icon
                   // icon={<GoLocation size={'3em'} />}
                 />
               </>
@@ -256,11 +255,13 @@ const Details = ({
                 <StatsCard
                   title={'Min Wgt'}
                   stat={weight.minimum.toString()}
+                  // TODO add minWeight icon
                   // icon={<GoLocation size={'3em'} />}
                 />
                 <StatsCard
                   title={'Max Wgt'}
                   stat={weight.maximum.toString()}
+                  // TODO add Max Wgt icon
                   // icon={<GoLocation size={'3em'} />}
                 />
               </>

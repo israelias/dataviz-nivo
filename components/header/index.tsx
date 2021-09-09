@@ -33,11 +33,10 @@ export const Header = ({
   number?;
 }) => {
   const { isOpen: isMobileNavOpen, onToggle } = useDisclosure();
-  const { loggedIn, email } = useAuth();
   const router = useRouter();
-  const show = router.pathname.includes(name);
 
-  console.log(router.pathname);
+  // Option to show particular elements when the pathname includes a parameter
+  const show = router.pathname.includes(name);
 
   return (
     <Box>
@@ -113,7 +112,7 @@ export const Header = ({
                 size={'sm'}
                 variant={'outline'}
                 borderColor={'#f1c857'}
-                aria-label={'Toggle Color Mode'}
+                aria-label={'Go Back'}
                 onClick={() => router.back()}
                 icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
               />
