@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Flex,
   HStack,
+  Stack,
   Button,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
@@ -21,11 +22,12 @@ const Pagination = ({
     <Flex
       id="pagination"
       height="62px"
+      pr={'-24px'}
       top={{ base: '39px', lg: 0 }}
       zIndex={10}
       position="sticky"
       width="100%"
-      maxWidth={{ base: '100vw' }}
+      // maxWidth={{ base: '100vw' }}
       bg={'#1f1f1f'}
     >
       <Flex
@@ -40,7 +42,6 @@ const Pagination = ({
           spacing={8}
           alignItems="center"
           width="100%"
-          bg=""
           justifyContent="space-between"
         >
           <Button
@@ -48,9 +49,10 @@ const Pagination = ({
             height="44px"
             size="sm"
             disabled={!hasPrev}
+            cursor="pointer"
             bg={'#3b3e46'}
             color={'#fafafa'}
-            onClick={() => setPage(page - 1)}
+            onClick={() => setPage(page === 1 ? 1 : page - 1)}
           >
             Previous
           </Button>
@@ -58,12 +60,25 @@ const Pagination = ({
             fontSize="10px"
             height="44px"
             size="sm"
-            disabled={!hasNext}
-            onClick={() => setPage(page + 1)}
+            cursor="pointer"
             bg={'#3b3e46'}
             color={'#fafafa'}
+            onClick={() => setPage(0)}
           >
-            Next
+            RePool
+          </Button>
+          <Button
+            fontSize="10px"
+            height="44px"
+            size="sm"
+            disabled={!hasNext}
+            cursor="pointer"
+            onClick={() => setPage(page === 6 ? 6 : page + 1)}
+            bg={'#3b3e46'}
+            color={'#fafafa'}
+            zIndex={1}
+          >
+            {page === 0 ? 'Start' : 'Next'}
           </Button>
         </HStack>
       </Flex>
