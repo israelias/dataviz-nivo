@@ -10,10 +10,11 @@ Mock Sign in with:
 - `admin@admin.com`
 - `admin`
 
-Please Review `lux-de
+## Branches
 
+Development has been on-going on `lux-dev`, not having merged with `main` since submission.
+A copy of the `main` branch from submission date has been forked to `lux-submission` with consideration to reviewing the state of the project at deadline. Recent progress in `lux-dev` has been merged to main to maintain docs and update deps.
 ## Production Feature Predicates
-
 #### Pokedex `roledex` wheel
 
 [<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
