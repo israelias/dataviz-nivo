@@ -1,6 +1,6 @@
 # Frontend Challenge 
 
-[<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
+[<div style="text-align:center"><img src="docs/radar_repooling.gif" width="800" alt="pokedex sample"/></div>](docs/radar_repooling.gif)
 
 ## Joem Elias Sanez
 
@@ -19,7 +19,7 @@ Please Review `lux-de
 [<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
 
 #### Pagination Repooling
-[<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
+[<div style="text-align:center"><img src="docs/radar_selection.gif" width="800" alt="pokedex sample"/></div>](docs/radar_selection.gif)
 
 ## Development Feature Predicates
 
