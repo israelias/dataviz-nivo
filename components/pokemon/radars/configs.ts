@@ -1,4 +1,5 @@
 export const DetailTheme = {
+  background: 'transparent',
   textColor: '#8dbce3',
   labels: {
     text: {
@@ -6,12 +7,16 @@ export const DetailTheme = {
     },
   },
   markers: {
-    lineColor: '#000000',
+    lineColor: '#898',
     lineStrokeWidth: 1,
-    text: { fill: '#f1c857' },
+    text: {
+      fill: '#f1c857',
+    },
   },
   dots: {
-    text: { fill: '#f1c857' },
+    text: {
+      fill: '#f1c857',
+    },
   },
   crosshair: {
     line: {
@@ -30,7 +35,7 @@ export const DetailTheme = {
   axis: {
     domain: {
       line: {
-        stroke: 'transparent',
+        stroke: '#8857',
         strokeWidth: 1,
       },
     },
@@ -61,13 +66,13 @@ export const DetailTheme = {
     },
     outline: {
       fill: 'none',
-      stroke: '#000000',
+      stroke: '#fafafa',
       strokeWidth: 2,
       outlineWidth: 2,
       outlineColor: '#ffffff',
     },
     symbol: {
-      fill: '#000000',
+      fill: '#994',
       outlineWidth: 2,
       outlineColor: '#f1c857',
     },
@@ -75,6 +80,7 @@ export const DetailTheme = {
 };
 
 export const DexTheme = {
+  background: 'transparent',
   textColor: '#8dbce3',
   labels: {
     text: {

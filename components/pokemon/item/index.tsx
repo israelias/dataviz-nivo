@@ -4,14 +4,15 @@ import { useRouter } from 'next/router';
 
 import { PokemonFragment } from '../../../@types/graphql';
 
-import { RadarDefault, RadarDetail } from '../radars';
-import WrapperItem from './wrapper';
+import { RadarDefault, RadarDetail, RadarRedux } from '../radars';
+
 import { PokemonSignature } from './details';
 export const PokemonDetail = ({
   data,
   inViewData,
   setInViewData,
   selected,
+  selectedData,
   name,
   image,
   number,
@@ -21,6 +22,7 @@ export const PokemonDetail = ({
   setInViewData?: React.Dispatch<
     React.SetStateAction<PokemonFragment[]>
   >;
+  selectedData?: Array<PokemonFragment>;
   selected?: boolean;
   name?: string;
   number?: string;
@@ -44,13 +46,13 @@ export const PokemonDetail = ({
         <RadarDetail
           inViewData={inViewData}
           setInViewData={setInViewData}
-          data={data}
+          data={selectedData}
           selected={selected}
           name={name}
           number={number}
         />
       ) : (
-        <RadarDefault
+        <RadarRedux
           inViewData={inViewData}
           setInViewData={setInViewData}
           data={data}
@@ -59,6 +61,7 @@ export const PokemonDetail = ({
           number={number}
         />
       )}
+
       {selected && name && image && (
         <Box position="fixed" bottom={0} right={0} p={'24px'}>
           <PokemonSignature

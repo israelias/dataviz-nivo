@@ -29,15 +29,18 @@ export const RadarDefault = ({
 
   return (
     <MotionBox height="80vh">
-      {inViewData && (
+      {data && (
         <ResponsiveRadar
           key={'default-radar'}
-          data={inViewData.map((d) => ({
-            name: d?.name,
-            maxCP: d?.maxCP,
-            maxHP: d?.maxHP,
-          }))}
-          keys={['maxCP', 'maxHP', 'name']}
+          // data={data.map((d) => ({
+          //   name: d?.name,
+          //   maxCP: d?.maxCP,
+          //   maxHP: d?.maxHP,
+          //   maxHeight: parseInt(d?.height?.maximum),
+          //   maxWeight: parseInt(d?.weight?.maximum),
+          // }))}
+          data={data}
+          keys={['maxCP', 'maxHP']}
           indexBy="name"
           maxValue="auto"
           margin={{ top: 70, right: 80, bottom: 40, left: 120 }}
@@ -45,7 +48,7 @@ export const RadarDefault = ({
           borderWidth={2}
           borderColor={{ from: 'color' }}
           gridLevels={5}
-          gridShape="circular"
+          gridShape="linear"
           gridLabelOffset={36}
           enableDots={true}
           dotSize={10}
@@ -62,6 +65,7 @@ export const RadarDefault = ({
           // @ts-ignore
           motionConfig="wobbly"
           isInteractive={true}
+          theme={DexTheme}
           legends={[
             {
               anchor: 'top-right',

@@ -35,6 +35,17 @@ const PokemonDex = ({
     usePokemonsData();
   const [inViewNum, setInViewNum] =
     React.useState<string>(providerNum);
+
+  const {
+    dispatch,
+    pokemons,
+    pokemonsDeck,
+    setPokemonsDeck,
+    page,
+    setPage,
+    hasPrev,
+    hasNext,
+  } = usePokemonsData();
   // const first = inViewNum > '001';
   // // && inViewNum < '001';
   // const second = inViewNum > '026';
@@ -106,20 +117,20 @@ const PokemonDex = ({
       <Stack
         py={8}
         mt={16}
-        // height={selected ? '100vh' : 'unset'}
+        height={selected ? '100vh' : 'unset'}
         as={'nav'}
         spacing={1}
         maxW={{ md: '360px' }}
         w={'100%'}
         flexShrink={0}
         pl={'24px'}
-        // position={selected ? 'absolute' : 'unset'}
+        position={selected ? 'absolute' : 'unset'}
         justifyContent={'center'}
         display={{ base: 'none', lg: 'flex' }}
         bg={'#2d2f36'}
       >
-        {inViewData &&
-          inViewData.map((pokemon) => (
+        {data &&
+          data.map((pokemon) => (
             <InViewItem
               key={`inView-${pokemon?.id}`}
               data={data}
@@ -146,31 +157,28 @@ const PokemonDex = ({
             </InViewItem>
           ))}
 
-        <Box height="100%"> </Box>
-        <Box
-          position="fixed"
-          flexShrink={0}
-          pl={'24px'}
-          bottom={0}
-          left={0}
-          as={'nav'}
-          maxW={{ md: '360px' }}
-          w={'100%'}
-          width="100%"
+        <Box></Box>
+        <Stack
           mt="auto"
-          pt="16px"
-          ml={{ base: '20%vw', lg: '10vw' }}
-          // spacing={{ base: 0, lg: 8 }}
-          right={0}
-          mr={'75vw'}
+          zIndex={'banner'}
+          bottom={0}
+          position="sticky"
+          width={'100%'}
         >
-          <Pagination
-            hasPrev={true}
-            hasNext={true}
-            page={1}
-            setPage={() => {}}
-          />
-        </Box>
+          <Box
+            position="sticky"
+            ml={'-24px!important'}
+            bottom={0}
+            maxW={{ md: '360px' }}
+          >
+            <Pagination
+              hasPrev={hasPrev}
+              hasNext={hasNext}
+              page={page}
+              setPage={setPage}
+            />
+          </Box>
+        </Stack>
       </Stack>
     </>
   );
