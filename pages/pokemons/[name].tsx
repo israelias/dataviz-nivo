@@ -6,7 +6,6 @@ import {
 } from '../../lib/hooks';
 
 import { DrawerLayout } from '../../components/layout/drawer.layout';
-import { PokemonFragment } from '../../@types/graphql';
 import { usePokemonsData } from '../../context/pokemon.context';
 
 import { withApollo, initializeApollo } from '../../lib/apollo';

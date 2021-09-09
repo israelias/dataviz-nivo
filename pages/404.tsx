@@ -7,6 +7,7 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
+import { TextUnderline } from '../components/shared/underline';
 import NextLink from 'next/link';
 
 export const NotFound = () => {
@@ -22,7 +23,9 @@ export const NotFound = () => {
         align={'center'}
         textAlign={'center'}
       >
-        {/* <Icon as={Logo} w={10} h={10} /> */}
+        <Stack>
+          <TextUnderline>Poke</TextUnderline>dex
+        </Stack>
         <Stack spacing={2}>
           <Heading>Page not found</Heading>
           <Text>
