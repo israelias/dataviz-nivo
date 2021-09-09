@@ -1,4 +1,7 @@
 # Frontend Challenge 
+
+[<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
+
 ## Joem Elias Sanez
 
 Development submission of PokeDex. Dashboard that dynamically animates a graph visualization as you scroll through the deck of data. The data exposes the varieties and relationships of weight/size to Combat Power/Hit Points of a given Pokemon. 
@@ -6,6 +9,18 @@ Development submission of PokeDex. Dashboard that dynamically animates a graph v
 Mock Sign in with:
 - `admin@admin.com`
 - `admin`
+
+Please Review `lux-de
+
+## Production Feature Predicates
+
+#### Pokedex `roledex` wheel
+
+[<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
+
+#### Pagination Repooling
+[<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
+
 ## Development Feature Predicates
 
 Currently in development, on `lux-dev` branch with a preview on vercel. Along with a production deployment on `main`. 
