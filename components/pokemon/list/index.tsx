@@ -46,18 +46,12 @@ const PokemonDex = ({
     hasPrev,
     hasNext,
   } = usePokemonsData();
-  // const first = inViewNum > '001';
-  // // && inViewNum < '001';
-  // const second = inViewNum > '026';
-  // // && inViewNum < '026';
-  // const third = inViewNum > '051';
-  // // && inViewNum < '051';
-  // const fourth = inViewNum > '076';
-  // // && inViewNum < '076';
-  // const fifth = inViewNum > '101';
-  // // && inViewNum < '101';
-  // const sixth = inViewNum > '126';
-  // // && inViewNum < '126';
+  // const first = inViewNum > '001' && inViewNum < '001';
+  // const second = inViewNum > '026'&& inViewNum < '026';
+  // const third = inViewNum > '051' && inViewNum < '051'
+  // const fourth = inViewNum > '076' && inViewNum < '076';
+  // const fifth = inViewNum > '101' && inViewNum < '101';
+  // const sixth = inViewNum > '126' && inViewNum < '126';
 
   // React.useEffect(() => {
   //   if (first) {
@@ -128,6 +122,7 @@ const PokemonDex = ({
         justifyContent={'center'}
         display={{ base: 'none', lg: 'flex' }}
         bg={'#2d2f36'}
+        zIndex={'banner'}
       >
         {data &&
           data.map((pokemon) => (
