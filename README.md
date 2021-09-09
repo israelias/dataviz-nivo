@@ -6,6 +6,10 @@
 
 Development submission of PokeDex. Dashboard that dynamically animates a graph visualization as you scroll through the deck of data. The data exposes the varieties and relationships of weight/size to Combat Power/Hit Points of a given Pokemon. 
 
+Please visit the project at 
+- Prod [lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
+
+
 Mock Sign in with:
 - `admin@admin.com`
 - `admin`
@@ -14,6 +18,12 @@ Mock Sign in with:
 
 Development has been on-going on `lux-dev`, not having merged with `main` since submission.
 A copy of the `main` branch from submission date has been forked to `lux-submission` with consideration to reviewing the state of the project at deadline. Recent progress in `lux-dev` has been merged to main to maintain docs and update deps.
+
+A deployment copy of this branch is also live.
+
+- Submission
+[lux-submission.vercel.app](https://lux-submission.vercel.app/)
+
 ## Production Feature Predicates
 #### Pokedex `roledex` wheel
 
@@ -28,8 +38,6 @@ Currently in development, on `lux-dev` branch with a preview on vercel. Along wi
 
 - Dev 
 [lux-dev.vercel.app](https://lux-dev.vercel.app/)
-- Prod
-[lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
 
 #### Pokedex `roledex` wheel
 - See [issue](https://gitlab.com/israelias/lux-frontend/-/issues/1) regarding Nivo's radar component.
