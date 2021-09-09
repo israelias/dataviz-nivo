@@ -21,6 +21,12 @@ const PokemonByNamePage: PageGetPokemonByNameComp = (props) => {
   return (
     <DrawerLayout
       selected
+      image={props?.data?.pokemon?.image}
+      maxHP={props?.data?.pokemon?.maxHP}
+      maxCP={props?.data?.pokemon?.maxCP}
+      height={props?.data?.pokemon?.height}
+      weight={props?.data?.pokemon?.weight}
+      classification={props?.data?.pokemon?.classification}
       id={props?.data?.pokemon?.id}
       number={props.data?.pokemon.number}
       name={props.data?.pokemon.name}

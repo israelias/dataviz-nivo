@@ -1,18 +1,19 @@
 import React from 'react';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { PokemonFragment } from '../../../@types/graphql';
 
 import { RadarDefault, RadarDetail } from '../radars';
 import WrapperItem from './wrapper';
-
+import { PokemonSignature } from './details';
 export const PokemonDetail = ({
   data,
   inViewData,
   setInViewData,
   selected,
   name,
+  image,
   number,
 }: {
   data: Array<PokemonFragment>;
@@ -23,6 +24,7 @@ export const PokemonDetail = ({
   selected?: boolean;
   name?: string;
   number?: string;
+  image?: string;
   xParam?: string;
 }) => {
   const router = useRouter();
@@ -56,6 +58,15 @@ export const PokemonDetail = ({
           name={name}
           number={number}
         />
+      )}
+      {selected && name && image && (
+        <Box position="fixed" bottom={0} right={0} p={'24px'}>
+          <PokemonSignature
+            name={name}
+            image={image}
+            date={new Date('2021-09-09T19:01:27Z')}
+          />
+        </Box>
       )}
     </Flex>
   );

@@ -21,7 +21,7 @@ import { Header } from '../header';
 import { PokemonDetail } from '../pokemon/item';
 
 import { PokemonFragment } from '../../@types/graphql';
-
+import { PokemonSignature } from '../pokemon/item/details';
 import PokemonDex from '../pokemon/list';
 import Pagination from '../pagination';
 import Details from '../pokemon/item/details';
@@ -31,7 +31,19 @@ interface DrawerLayoutProps {
   selected?: boolean;
   name?: string;
   number?: string;
+  image?: string;
+  maxHP?: number;
+  maxCP?: number;
+  weight?: {
+    minimum?: string;
+    maximum?: string;
+  };
+  height?: {
+    minimum?: string;
+    maximum?: string;
+  };
   id?: string;
+  classification?: string;
   xParam?: string;
 }
 
@@ -40,6 +52,12 @@ export const DrawerLayout = ({
   selected,
   name,
   number,
+  image,
+  maxHP,
+  maxCP,
+  height,
+  weight,
+  classification,
   data,
   id,
   xParam,
@@ -72,7 +90,17 @@ export const DrawerLayout = ({
           spacing={{ base: 0, lg: 8 }}
         >
           {selected ? (
-            <Details id={id} name={name} number={number} />
+            <Details
+              id={id}
+              maxCP={maxCP}
+              classification={classification}
+              maxHP={maxHP}
+              image={image}
+              height={height}
+              weight={weight}
+              name={name}
+              number={number}
+            />
           ) : (
             <PokemonDex
               inViewData={inViewData}
@@ -92,6 +120,7 @@ export const DrawerLayout = ({
             selected={selected}
             name={name}
             number={number}
+            image={image}
             xParam={xParam}
           />
         </Stack>
