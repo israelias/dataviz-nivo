@@ -33,10 +33,6 @@ const initialState: StateInterface = {
   error: {},
 };
 
-type StatusType = {
-  status: string;
-};
-
 type PokemonsDataType = {
   pokemons: PokemonsReturnType | undefined;
   pokemonsDeck: PokemonsReturnType | undefined;
@@ -106,8 +102,6 @@ export default function PokemonsDataProvider({
     }
   }, [state]);
 
-  console.log(page);
-
   React.useEffect(() => {
     if (page === 1) {
       setPokemonsDeck(pokemons?.slice(0, 26));
@@ -144,6 +138,14 @@ export default function PokemonsDataProvider({
       setHasNext(true);
     }
   }, [page, pokemonsDeck]);
+
+  React.useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [page]);
 
   return (
     <PokemonsData.Provider
