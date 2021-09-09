@@ -5,22 +5,32 @@ import {
   ssrGetAllPokemons,
 } from '../../lib/hooks';
 
-import { usePokemonsData } from '../../context/pokemon.context';
-
 import { DrawerLayout } from '../../components/layout/drawer.layout';
 import { PokemonFragment } from '../../@types/graphql';
+import { usePokemonsData } from '../../context/pokemon.context';
 
 import { withApollo, initializeApollo } from '../../lib/apollo';
 import { GetServerSideProps, GetStaticPaths } from 'next';
 
 const PokemonByNamePage: PageGetPokemonByNameComp = (props) => {
-  const { setInViewNum } = usePokemonsData();
-  const { data } = ssrGetAllPokemons.usePage();
-  console.log('name', data?.pokemons?.length);
+  const { loading, error } = usePokemonsData();
+  const namePageProps = ssrGetAllPokemons.usePage();
+  const {
+    dispatch,
+    pokemons,
+    pokemonsDeck,
+    setPokemonsDeck,
+    page,
+    setPage,
+    hasPrev,
+    hasNext,
+  } = usePokemonsData();
 
   return (
     <DrawerLayout
       selected
+      loading={namePageProps?.loading || loading}
+      error={props?.error || error}
       image={props?.data?.pokemon?.image}
       maxHP={props?.data?.pokemon?.maxHP}
       maxCP={props?.data?.pokemon?.maxCP}
@@ -31,6 +41,7 @@ const PokemonByNamePage: PageGetPokemonByNameComp = (props) => {
       number={props.data?.pokemon.number}
       name={props.data?.pokemon.name}
       data={[props?.data?.pokemon]}
+      selectedData={[props?.data?.pokemon]}
     >
       <p>{props?.data?.pokemon?.name ?? 'Loading'}</p>
     </DrawerLayout>
