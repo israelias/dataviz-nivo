@@ -43,10 +43,18 @@ function StatsCard(props: StatsCardProps) {
     >
       <Flex justifyContent={'space-between'}>
         <Box pl={{ base: 2, md: 4 }}>
-          <StatLabel fontWeight={'medium'} isTruncated>
+          <StatLabel
+            color={'#ad9041'}
+            fontWeight={'medium'}
+            isTruncated
+          >
             {title}
           </StatLabel>
-          <StatNumber fontSize={'sm'} fontWeight={'normal'}>
+          <StatNumber
+            color={'#dfcc99'}
+            fontSize={'sm'}
+            fontWeight={'normal'}
+          >
             {stat}
           </StatNumber>
         </Box>
