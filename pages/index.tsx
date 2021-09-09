@@ -24,8 +24,11 @@ import {
 import React from 'react';
 
 const LoginPage: PageGetAllPokemonsComp = (props) => {
-  const { dispatch } = usePokemonsData();
-  console.log('admin', props?.data?.pokemons?.length);
+  const { error } = props;
+  const { dispatch, pokemonsDeck } = usePokemonsData();
+  console.log('index ff', props?.data?.pokemons?.length);
+  console.log('index ff error', error);
+  console.log('provider ff', pokemonsDeck);
   const { data } = ssrGetAllPokemons.usePage();
 
   const history = useRouter();

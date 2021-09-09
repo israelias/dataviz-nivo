@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import { ApolloError } from '@apollo/client';
 import {
   Container,
   Flex,
@@ -19,6 +20,7 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Header } from '../header';
 
 import { PokemonDetail } from '../pokemon/item';
+import { usePokemonsData } from '../../context/pokemon.context';
 
 import { PokemonFragment } from '../../@types/graphql';
 import { PokemonSignature } from '../pokemon/item/details';
@@ -28,6 +30,7 @@ import Details from '../pokemon/item/details';
 interface DrawerLayoutProps {
   children?: ReactNode;
   data: Array<PokemonFragment>;
+  selectedData?: Array<PokemonFragment>;
   selected?: boolean;
   name?: string;
   number?: string;
@@ -45,6 +48,8 @@ interface DrawerLayoutProps {
   id?: string;
   classification?: string;
   xParam?: string;
+  loading?: boolean;
+  error?: ApolloError | any;
 }
 
 export const DrawerLayout = ({
@@ -59,9 +64,22 @@ export const DrawerLayout = ({
   weight,
   classification,
   data,
+  selectedData,
+  loading,
+  error,
   id,
   xParam,
 }: DrawerLayoutProps) => {
+  const {
+    dispatch,
+    pokemons,
+    pokemonsDeck,
+    setPokemonsDeck,
+    page,
+    setPage,
+    hasPrev,
+    hasNext,
+  } = usePokemonsData();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
 
@@ -75,7 +93,9 @@ export const DrawerLayout = ({
 
   const [inViewData, setInViewData] =
     React.useState<PokemonFragment[]>(data);
-
+  React.useEffect(() => {
+    console.log('layout', pokemonsDeck?.length);
+  }, [page]);
   return (
     <>
       <Header
@@ -89,7 +109,9 @@ export const DrawerLayout = ({
           direction={{ base: 'column', lg: 'row' }}
           spacing={{ base: 0, lg: 8 }}
         >
-          {selected ? (
+          {loading ? (
+            <p>loading...</p>
+          ) : selected ? (
             <Details
               id={id}
               maxCP={maxCP}
@@ -105,7 +127,7 @@ export const DrawerLayout = ({
             <PokemonDex
               inViewData={inViewData}
               setInViewData={setInViewData}
-              data={data}
+              data={pokemonsDeck}
               selected={selected}
               name={name}
               number={number}
@@ -116,7 +138,8 @@ export const DrawerLayout = ({
           <PokemonDetail
             inViewData={inViewData}
             setInViewData={setInViewData}
-            data={data}
+            data={pokemonsDeck}
+            selectedData={selectedData}
             selected={selected}
             name={name}
             number={number}
@@ -134,7 +157,7 @@ export const DrawerLayout = ({
         size={'md'}
         isRound={true}
         onClick={onOpen}
-        aria-label={'Toggle Docs Menu'}
+        aria-label={'Toggle Pokedex Menu'}
         bg={'white'}
         css={{
           boxShadow:
