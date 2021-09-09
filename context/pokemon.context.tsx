@@ -1,4 +1,5 @@
 import React from 'react';
+import { ApolloError } from '@apollo/client';
 
 import { PokemonFragment } from '../@types/graphql';
 
@@ -15,14 +16,14 @@ export interface FetchPokemonsAction {
   type: PokemonActionTypes;
   pokemons?: PokemonsReturnType;
   currentPage?: number;
-  error?: object;
+  error?: ApolloError | any;
 }
 
 export interface StateInterface {
   pokemons?: PokemonsReturnType;
   currentPage?: number;
   loading: boolean;
-  error?: object;
+  error?: ApolloError | any;
 }
 
 const initialState: StateInterface = {
@@ -38,13 +39,16 @@ type StatusType = {
 
 type PokemonsDataType = {
   pokemons: PokemonsReturnType | undefined;
+  pokemonsDeck: PokemonsReturnType | undefined;
+  setPokemonsDeck: React.Dispatch<
+    React.SetStateAction<PokemonsReturnType>
+  >;
   loading: boolean;
   error: {} | undefined;
-
+  hasPrev: boolean;
+  hasNext: boolean;
   page: number;
-
-  handlePageChange: (nextPage: number) => void;
-  getPokemonsByPage: (nextPage: number) => PokemonFragment[];
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 
   inViewNum: string;
   setInViewNum: React.Dispatch<React.SetStateAction<string>>;
@@ -87,48 +91,78 @@ export default function PokemonsDataProvider({
   );
 
   const { pokemons, loading, error } = state;
-  const [page, setPage] = React.useState<number>(1);
+  const [pokemonsDeck, setPokemonsDeck] = React.useState<
+    PokemonsReturnType | undefined
+  >(undefined!);
+  const [page, setPage] = React.useState<number>(0);
+
+  const [hasNext, setHasNext] = React.useState<boolean>(true);
+  const [hasPrev, setHasPrev] = React.useState<boolean>(false);
   const [inViewNum, setInViewNum] = React.useState<string>('001');
 
-  const handlePageChange = (nextPage: number) => {
-    dispatch({
-      type: PokemonActionTypes.fetchPokemonsPage,
-      currentPage: nextPage,
-    });
-  };
+  React.useEffect(() => {
+    if (pokemons) {
+      setPokemonsDeck(pokemons);
+    }
+  }, [state]);
 
-  const perPage = 10;
+  console.log(page);
 
-  const pokemonsContextValue = React.useMemo(
-    () => ({
-      getPokemonsByPage: (nextPage: number) => {
-        if (page < nextPage) {
-          setPage(nextPage);
-        }
-        return (
-          pokemons &&
-          pokemons.slice(
-            page === 1 ? 0 : page * perPage - 1,
-            perPage * nextPage + 1
-          )
-        );
-      },
+  React.useEffect(() => {
+    if (page === 1) {
+      setPokemonsDeck(pokemons?.slice(0, 26));
+    }
+    if (page === 2) {
+      setPokemonsDeck(pokemons?.slice(25, 51));
+    }
+    if (page === 3) {
+      setPokemonsDeck(pokemons?.slice(50, 76));
+    }
+    if (page === 4) {
+      setPokemonsDeck(pokemons?.slice(75, 101));
+    }
+    if (page === 5) {
+      setPokemonsDeck(pokemons?.slice(100, 126));
+    }
+    if (page === 6) {
+      setPokemonsDeck(pokemons?.slice(125, 151));
+    }
+    if (page === 0) {
+      setPokemonsDeck(pokemons);
+    }
+  }, [page, pokemons]);
 
-      loading,
-      error,
-      pokemons,
-      state,
-      dispatch,
-      page,
-      handlePageChange,
-      inViewNum,
-      setInViewNum,
-    }),
-    [state]
-  );
+  React.useEffect(() => {
+    if (page < 7 && page > 1) {
+      setHasPrev(true);
+    } else {
+      setHasPrev(false);
+    }
+    if (page === 6) {
+      setHasNext(false);
+    } else {
+      setHasNext(true);
+    }
+  }, [page, pokemonsDeck]);
 
   return (
-    <PokemonsData.Provider value={pokemonsContextValue}>
+    <PokemonsData.Provider
+      value={{
+        pokemonsDeck,
+        setPokemonsDeck,
+        loading,
+        error,
+        pokemons,
+        state,
+        dispatch,
+        page,
+        setPage,
+        hasPrev,
+        hasNext,
+        inViewNum,
+        setInViewNum,
+      }}
+    >
       {children}
     </PokemonsData.Provider>
   );
