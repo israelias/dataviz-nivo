@@ -1,69 +1,56 @@
-# Frontend Challenge 
+# Dataviz Nivo
 
 [<div style="text-align:center"><img src="docs/radar_repooling.gif" width="800" alt="pokedex sample"/></div>](docs/radar_repooling.gif)
 
-## Joem Elias Sanez
+## Dev
 
-Development submission of PokeDex. Dashboard that dynamically animates a graph visualization as you scroll through the deck of data. The data exposes the varieties and relationships of weight/size to Combat Power/Hit Points of a given Pokemon. 
+Development submission of PokeDex. Dashboard that dynamically animates a graph visualization as you scroll through the deck of data. The data exposes the varieties and relationships of weight/size to Combat Power/Hit Points of a given Pokemon.
 
-Please visit the project at 
-- Prod [lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
+Please visit the project at
 
-
-Mock Sign in with:
-- `admin@admin.com`
-- `admin`
-
-## Branches
-
-Development has been on-going on `lux-dev`, not having merged with `main` since submission.
-A copy of the `main` branch from submission date has been forked to `lux-submission` with consideration to reviewing the state of the project at deadline. Recent progress in `lux-dev` has been merged to main to maintain docs and update deps.
-
-A deployment copy of this branch is also live.
-
-- Submission
-[lux-submission.vercel.app](https://lux-submission.vercel.app/)
-
+- Prod [dataviz-nivo.vercel.app](https://dataviz-nivo.vercel.app/)
 ## Production Feature Predicates
 #### Pokedex `roledex` wheel
 
 [<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
 
 #### Pagination Repooling
+
 [<div style="text-align:center"><img src="docs/radar_selection.gif" width="800" alt="pokedex sample"/></div>](docs/radar_selection.gif)
 
 ## Development Feature Predicates
 
-Currently in development, on `lux-dev` branch with a preview on vercel. Along with a production deployment on `main`. 
+Currently in development, on `dataviz-dev` branch with a preview on vercel. Along with a production deployment on `main`.
 
-- Dev 
-[lux-dev.vercel.app](https://lux-dev.vercel.app/)
+- Dev
+  [dataviz-dev.vercel.app](https://dataviz-dev.vercel.app/)
 
 #### Pokedex `roledex` wheel
-- See [issue](https://gitlab.com/israelias/lux-frontend/-/issues/1) regarding Nivo's radar component.
+
+- See [issue](https://github.com/israelias/dataviz-nivo/issues/5) regarding Nivo's radar component.
 - The graph on the right animates as one flips through the left deck in batches of at least 25 objects intersecting the screen.
 - Works in dev better than prod, but buggy.
 
 #### Pagination UI is disabled
+
 - Please review the declarative approach to pagination on the client side, which, was lower on the MVP list given the `roledex` approach.
 - The ambition was to pre-fetch static paths from the list of Pokemons, their slice in the finite array, and their slice's key to a static integer to `shallow-fetch` the url as the deck is spinning. The result is pagination reacting to animation without page refresh.
 - Note: Still in development.
 
 ### Context API, In-Memory Cache and the Client
+
 - Context API is used to provide in-memory storage and for another back-up cache under `apollo-client`. Authorization, ensuring `token`, in this case, justt `email`, can be passed down to fragments of the component tree as a resource for a feature or a security requirement.
 - The signature auth try,-> fetch.then -> catch ---> finally chain works well in a provider but not in the case of this project. You will see that I was not able to provide a mock auth that at-least calls /api on the client side via `swr`. Thhis should `req`-`res` even on a mock, but presently still disabled.
 - Note: Context Providers were not the most ideal choice in a NextJS environment, but it still adds considerable utility when reducing, slicing, referencing a constant from a fork of a source. The most visible benefit is never having undefined props from the top of the component tree.
 - Note: The downside is that the data will refresh on Next unless it's shallow fetch. Regardless, somce combo in wordth considering.
 
-
-- 
+-
 
 ## Bugs
-- Intersection observer is not pairing well with NextJS SSR. 
+
+- Intersection observer is not pairing well with NextJS SSR.
 - useSWR config needs to be replaced with isomorphic-unfetch for auth (a mock is currently in place).
 - ...tbc
- 
-
 
 ### Brief
 
@@ -74,6 +61,7 @@ Your task is to implement the two Figma designs to spec, and integrate it with a
 You are free to use any web-framework and technology, as long as the core frontend stack is based on React.
 
 We recommend highlighting these skills if you have familiarity with it, however this is optional and not necessary. Usage of these libraries will not impact the scoring of our code-review:
+
 - Next.js or CRA
 - Typescript
 - CSS-in-JS (styled-components, emotion, etc.)
@@ -81,11 +69,13 @@ We recommend highlighting these skills if you have familiarity with it, however 
 - XState
 
 ## Task Description
-You are building two very simple flows. The first is a login page. 
-This login page will simply check static credentials (e.g. admin/admin) which if work, should redirect the user to the main page. 
+
+You are building two very simple flows. The first is a login page.
+This login page will simply check static credentials (e.g. admin/admin) which if work, should redirect the user to the main page.
 DO NOT build a full auth system for this. We do not expect you to build a backend.
 
 When reviewing the login page, we are looking for an understanding of:
+
 - Ability to create forms
 - Ability to implement the various form states (field validation, error, success etc)
 - Ability to implement style to spec
@@ -96,6 +86,7 @@ After the login page, you will be dropped into a "Pokedex", a simply dashboard t
 You will notice that in the selected section, only the header is designed for you. You have free autonomy over how to design the details section, and you are encouraged to implement the details page yourself.
 
 You will be judged for an understanding of:
+
 - Ability to use Graphql correctly
 - Ability to integrate a real API
 - Ability to implement a pagination API
@@ -103,12 +94,15 @@ You will be judged for an understanding of:
 - Ability to design new UIs
 
 ## Figma Link
+
 https://www.figma.com/file/lv57Aog6JVWqWJH4STVKeL/frontend-challenge?node-id=0%3A1
 
 ## Graphql API
+
 https://graphql-pokemon2.vercel.app/
 
 Example query:
+
 ```graphql
 {
   pokemons(first: 10) {
