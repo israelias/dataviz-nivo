@@ -1,0 +1,18 @@
+# import Attack from './attack.graphqls'
+
+"""
+Represents a Pokémon's attack types
+"""
+type PokemonAttack {
+  """
+  The fast attacks of this Pokémon
+  """
+  fast: [Attack]
+
+  """
+  The special attacks of this Pokémon
+  """
+  special: [Attack]
+}
+
+# export default PokemonAttack

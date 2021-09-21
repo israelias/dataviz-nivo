@@ -1,0 +1,7 @@
+# import Pokemon from './pokemon.graphqls'
+
+type Query {
+  query: Query
+  pokemons(first: Int!): [Pokemon]
+  pokemon(id: String, name: String): Pokemon
+}

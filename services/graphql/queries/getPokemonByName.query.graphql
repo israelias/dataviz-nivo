@@ -1,0 +1,9 @@
+# import pokemon from "../fragments/pokemon.fragment.graphql"
+
+query GetPokemonByName($name: String) {
+  pokemon(name: $name) {
+    ...pokemon
+  }
+}
+
+# export default GetPokemonByName
