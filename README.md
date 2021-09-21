@@ -129,9 +129,7 @@ Example query:
 }
 ```
 
-
 # Deployment
-
 
 ## Preview
 
