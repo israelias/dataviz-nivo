@@ -1,4 +1,4 @@
-# Pokedex ReViz
+# Dataviz Nivo
 
 [<div style="text-align:center"><img src="docs/radar_repooling.gif" width="800" alt="pokedex sample"/></div>](docs/radar_repooling.gif)
 
@@ -8,21 +8,8 @@ Development submission of PokeDex. Dashboard that dynamically animates a graph v
 
 Please visit the project at
 
-- Prod [lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
-
-
-## Branches
-
-Development has been on-going on `lux-dev`, not having merged with `main` since submission.
-A copy of the `main` branch from submission date has been forked to `lux-submission` with consideration to reviewing the state of the project at deadline. Recent progress in `lux-dev` has been merged to main to maintain docs and update deps.
-
-A deployment copy of this branch is also live.
-
-- Submission
-  [lux-submission.vercel.app](https://lux-submission.vercel.app/)
-
+- Prod [dataviz-nivo.vercel.app](https://dataviz-nivo.vercel.app/)
 ## Production Feature Predicates
-
 #### Pokedex `roledex` wheel
 
 [<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
@@ -33,14 +20,14 @@ A deployment copy of this branch is also live.
 
 ## Development Feature Predicates
 
-Currently in development, on `lux-dev` branch with a preview on vercel. Along with a production deployment on `main`.
+Currently in development, on `dataviz-dev` branch with a preview on vercel. Along with a production deployment on `main`.
 
 - Dev
-  [lux-dev.vercel.app](https://lux-dev.vercel.app/)
+  [dataviz-dev.vercel.app](https://dataviz-dev.vercel.app/)
 
 #### Pokedex `roledex` wheel
 
-- See [issue](https://gitlab.com/israelias/lux-frontend/-/issues/1) regarding Nivo's radar component.
+- See [issue](https://github.com/israelias/dataviz-nivo/issues/5) regarding Nivo's radar component.
 - The graph on the right animates as one flips through the left deck in batches of at least 25 objects intersecting the screen.
 - Works in dev better than prod, but buggy.
 
