@@ -85,9 +85,7 @@ Example query:
 }
 ```
 
-
 # Deployment
-
 
 ## Preview
 
