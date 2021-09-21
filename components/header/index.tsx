@@ -5,21 +5,38 @@ import {
   Stack,
   useDisclosure,
   IconButton,
-  useColorModeValue,
   Icon,
-  useColorMode,
   Heading,
 } from '@chakra-ui/react';
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import {
+  CloseIcon,
+  HamburgerIcon,
+  ArrowBackIcon,
+} from '@chakra-ui/icons';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import { Logo } from '../shared/Logo';
-import { TextUnderline } from '../shared/TextUnderline';
+import { TextUnderline } from '../shared/underline';
 import { MobileNav } from './mobilenav.header';
 import { DesktopNav } from './desktopnav.header';
+import { useAuth } from '../../context/auth.context';
 
-export const Header = () => {
+export const Header = ({
+  selected,
+  name,
+  number,
+  id,
+}: {
+  selected?: boolean;
+  name?: string;
+  id?;
+  number?;
+}) => {
   const { isOpen: isMobileNavOpen, onToggle } = useDisclosure();
+  const router = useRouter();
+
+  // Option to show particular elements when the pathname includes a parameter
+  const show = router.pathname.includes(name);
 
   return (
     <Box>
@@ -70,10 +87,10 @@ export const Header = () => {
                 alignItems={'center'}
                 spacing={{ base: 2, sm: 4 }}
               >
-                <Icon as={Logo} w={{ base: 8 }} h={{ base: 8 }} />
                 <Heading
                   as={'h1'}
                   fontSize={'xl'}
+                  color={'#b0964c'}
                   display={{ base: 'none', md: 'block' }}
                 >
                   <TextUnderline>Poke</TextUnderline>dex
@@ -90,6 +107,16 @@ export const Header = () => {
             justify={'flex-end'}
           >
             <DesktopNav display={{ base: 'none', md: 'flex' }} />
+            {selected && (
+              <IconButton
+                size={'sm'}
+                variant={'outline'}
+                borderColor={'#f1c857'}
+                aria-label={'Go Back'}
+                onClick={() => router.back()}
+                icon={<ArrowBackIcon color={'#f1c857'} size={24} />}
+              />
+            )}
           </Stack>
         </Container>
       </Flex>

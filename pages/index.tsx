@@ -1,21 +1,15 @@
-import {
-  Flex,
-  Stack,
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-} from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Stack, Button } from '@chakra-ui/react';
+
 import { GetServerSideProps } from 'next';
 import {
   PageGetAllPokemonsComp,
   ssrGetAllPokemons,
 } from '../lib/hooks';
-import Link from 'next/link';
-import { DrawerLayout } from '../components/layout/drawer.layout';
+
 import { AppLayout } from '../components/layout/app.layout';
 import { withApollo, initializeApollo } from '../lib/apollo';
+
+import { LoginForm, LoginWrapper } from '../components/auth';
 
 import { useAuth } from '../context/auth.context';
 import {
@@ -24,12 +18,10 @@ import {
 } from '../context/pokemon.context';
 import React from 'react';
 
-const LoginPage: PageGetAllPokemonsComp = () => {
-  const { dispatch } = usePokemonsData();
-
+const LoginPage: PageGetAllPokemonsComp = (props) => {
+  const { error } = props;
+  const { dispatch, pokemonsDeck } = usePokemonsData();
   const { data } = ssrGetAllPokemons.usePage();
-
-  const history = useRouter();
 
   const { email, setEmail, password, setPassword, handleSignIn } =
     useAuth();
@@ -44,78 +36,36 @@ const LoginPage: PageGetAllPokemonsComp = () => {
 
   return (
     <AppLayout>
-      <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg="#1c1d1f"
-      >
-        <Stack
-          spacing={4}
-          w={'full'}
-          maxW={'md'}
-          bg="#2d2f36"
-          rounded={'md'}
-          boxShadow={'lg'}
-          p={6}
-          my={12}
-        >
-          <form id="login" onSubmit={handleSignIn}>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input
-                placeholder="admin@admin.com"
-                _placeholder={{ color: 'gray.500' }}
-                border="1px solid"
-                borderColor="transparent"
-                color={'white'}
-                _focus={{
-                  borderColor: '#f1c857',
-                }}
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                border="1px solid"
-                borderColor="transparent"
-                color={'white'}
-                _focus={{
-                  borderColor: '#f1c857',
-                }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormControl>
-          </form>
-          <Stack spacing={6}>
-            <Button
-              type="submit"
-              form="login"
-              bg={'#f1c857'}
-              color={'white'}
-              _hover={{
-                bg: '#3f414b',
-              }}
-              // TODO
-              // onClick={() => {
-              //   history.push({ pathname: '/pokemons' });
-              // }}
-            >
-              Login
-            </Button>
-          </Stack>
+      <LoginWrapper>
+        <LoginForm
+          email={email}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          password={password}
+          handleSignIn={handleSignIn}
+        />
+        <Stack spacing={6}>
+          <Button
+            type="submit"
+            form="login"
+            bg={'#f1c857'}
+            color={'white'}
+            _hover={{
+              bg: '#3f414b',
+            }}
+            // TODO This is a Mock using `admin@admin.com`. Router is defined in `AuthContext`
+            // onClick={() => {
+            //   history.push({ pathname: '/pokemons' });
+            // }}
+          >
+            Login
+          </Button>
         </Stack>
-      </Flex>
+      </LoginWrapper>
     </AppLayout>
   );
 };
 
-// export default LoginPage;
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo();
   return await ssrGetAllPokemons.getServerPage({}, apolloClient);

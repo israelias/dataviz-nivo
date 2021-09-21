@@ -37,4 +37,4 @@ generates:
       typesPath: ../@types/graphql
     plugins:
       - "graphql-codegen-apollo-next-ssr" # replace by - graphql-codegen-apollo-next-ssr
-  
+        

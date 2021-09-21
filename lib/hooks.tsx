@@ -69,6 +69,67 @@ export const ssrGetFirstPokemons = {
   withPage: withPageGetFirstPokemons,
   usePage: useGetFirstPokemons,
 };
+export async function getServerPageGetPaginatedCount(
+  options: Omit<
+    Apollo.QueryOptions<Types.GetPaginatedCountQueryVariables>,
+    'query'
+  >,
+  apolloClient: Apollo.ApolloClient<NormalizedCacheObject>
+) {
+  const data = await apolloClient.query<Types.GetPaginatedCountQuery>(
+    { ...options, query: Operations.GetPaginatedCountDocument }
+  );
+
+  const apolloState = apolloClient.cache.extract();
+
+  return {
+    props: {
+      apolloState: apolloState,
+      data: data?.data,
+      error: data?.error ?? data?.errors ?? null,
+    },
+  };
+}
+export const useGetPaginatedCount = (
+  optionsFunc?: (
+    router: NextRouter
+  ) => QueryHookOptions<
+    Types.GetPaginatedCountQuery,
+    Types.GetPaginatedCountQueryVariables
+  >
+) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetPaginatedCountDocument, options);
+};
+export type PageGetPaginatedCountComp = React.FC<{
+  data?: Types.GetPaginatedCountQuery;
+  error?: Apollo.ApolloError;
+}>;
+export const withPageGetPaginatedCount =
+  (
+    optionsFunc?: (
+      router: NextRouter
+    ) => QueryHookOptions<
+      Types.GetPaginatedCountQuery,
+      Types.GetPaginatedCountQueryVariables
+    >
+  ) =>
+  (WrappedComponent: PageGetPaginatedCountComp): NextPage =>
+  (props) => {
+    const router = useRouter();
+    const options = optionsFunc ? optionsFunc(router) : {};
+    const { data, error } = useQuery(
+      Operations.GetPaginatedCountDocument,
+      options
+    );
+    return <WrappedComponent {...props} data={data} error={error} />;
+  };
+export const ssrGetPaginatedCount = {
+  getServerPage: getServerPageGetPaginatedCount,
+  withPage: withPageGetPaginatedCount,
+  usePage: useGetPaginatedCount,
+};
 export async function getServerPageGetPokemonById(
   options: Omit<
     Apollo.QueryOptions<Types.GetPokemonByIdQueryVariables>,

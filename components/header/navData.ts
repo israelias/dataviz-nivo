@@ -6,25 +6,16 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: Array<NavItem> = [
-  // {
-  //   label: 'Templates',
-  //   // @ts-ignore
-  //   children: data.map((category) => ({
-  //     label: category.name,
-  //     subLabel: category.subLabel,
-  //     href: `/${category.id}/${category.children?.[0].id}`,
-  //   })),
-  // },
   {
-    label: 'Contribute',
+    label: 'Send feedback anonymously',
     href: '',
   },
   {
-    label: 'GitHub',
+    label: 'Sign Up',
     href: '',
   },
   {
-    label: 'Discord',
+    label: 'Constribute',
     href: '',
   },
 ];

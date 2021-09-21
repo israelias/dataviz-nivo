@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { storage } from '../lib/storage';
 
 export type AuthContext = {
@@ -32,6 +32,8 @@ export default function AuthProvider({
   const [password, setPassword] = React.useState('');
 
   const history = useRouter();
+  // TODO Option to shallow route, that changes the URL without refesh
+  // router.push('/?counter=10', '/about?counter=10', { shallow: true });
 
   const handleSignIn = async (
     e: React.FormEvent<HTMLFormElement>
@@ -39,11 +41,14 @@ export default function AuthProvider({
     e.preventDefault();
     setLoading(true);
     if (email === 'admin@admin.com' && password === 'admin') {
+      // TODO Persist email to secure pages beyond `/`
       // setEmail('');
       setPassword('');
       setLoggedIn(true);
       storage.setUserLocal(email);
-      history.push('/pokemons');
+      Router.push({
+        pathname: '/pokemons',
+      });
     } else {
       setEmail('');
       setLoggedIn(false);
@@ -51,8 +56,8 @@ export default function AuthProvider({
       storage.setLogoutEvent();
     }
     // TODO
-    // SSR FETCHING is not working in production.
-    // Mock Auth for the time being.
+    // SSR FETCHING to /api for authentication is disabled in prod.
+    // AuthContext is providing a Mock Auth for the time being.
 
     // await fetch(
     //   new Request('/api', {
@@ -60,7 +65,7 @@ export default function AuthProvider({
     //     headers: {
     //       'Content-Type': 'application/json',
     //     },
-    //     // credentials: 'include',
+    //     credentials: 'include',
     //     body: JSON.stringify({
     //       email,
     //       password,
@@ -85,6 +90,7 @@ export default function AuthProvider({
     // });
   };
 
+  // TODO Optional Mock to secure pages beyond '/`
   // React.useEffect(() => {
   //   if (!email) {
   //     history.push('/');

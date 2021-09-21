@@ -1,18 +1,62 @@
 # Frontend Challenge 
+
+[<div style="text-align:center"><img src="docs/radar_repooling.gif" width="800" alt="pokedex sample"/></div>](docs/radar_repooling.gif)
+
 ## Joem Elias Sanez
 
 Development submission of PokeDex. Dashboard that dynamically animates a graph visualization as you scroll through the deck of data. The data exposes the varieties and relationships of weight/size to Combat Power/Hit Points of a given Pokemon. 
 
+Please visit the project at 
+- Prod [lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
+
+
 Mock Sign in with:
 - `admin@admin.com`
 - `admin`
-## Development
+
+## Branches
+
+Development has been on-going on `lux-dev`, not having merged with `main` since submission.
+A copy of the `main` branch from submission date has been forked to `lux-submission` with consideration to reviewing the state of the project at deadline. Recent progress in `lux-dev` has been merged to main to maintain docs and update deps.
+
+A deployment copy of this branch is also live.
+
+- Submission
+[lux-submission.vercel.app](https://lux-submission.vercel.app/)
+
+## Production Feature Predicates
+#### Pokedex `roledex` wheel
+
+[<div style="text-align:center"><img src="docs/radar_one.gif" width="800" alt="pokedex sample"/></div>](docs/radar_one.gif)
+
+#### Pagination Repooling
+[<div style="text-align:center"><img src="docs/radar_selection.gif" width="800" alt="pokedex sample"/></div>](docs/radar_selection.gif)
+
+## Development Feature Predicates
+
 Currently in development, on `lux-dev` branch with a preview on vercel. Along with a production deployment on `main`. 
 
 - Dev 
 [lux-dev.vercel.app](https://lux-dev.vercel.app/)
-- Prod
-[lux-frontend.vercel.app](https://lux-frontend.vercel.app/)
+
+#### Pokedex `roledex` wheel
+- See [issue](https://gitlab.com/israelias/lux-frontend/-/issues/1) regarding Nivo's radar component.
+- The graph on the right animates as one flips through the left deck in batches of at least 25 objects intersecting the screen.
+- Works in dev better than prod, but buggy.
+
+#### Pagination UI is disabled
+- Please review the declarative approach to pagination on the client side, which, was lower on the MVP list given the `roledex` approach.
+- The ambition was to pre-fetch static paths from the list of Pokemons, their slice in the finite array, and their slice's key to a static integer to `shallow-fetch` the url as the deck is spinning. The result is pagination reacting to animation without page refresh.
+- Note: Still in development.
+
+### Context API, In-Memory Cache and the Client
+- Context API is used to provide in-memory storage and for another back-up cache under `apollo-client`. Authorization, ensuring `token`, in this case, justt `email`, can be passed down to fragments of the component tree as a resource for a feature or a security requirement.
+- The signature auth try,-> fetch.then -> catch ---> finally chain works well in a provider but not in the case of this project. You will see that I was not able to provide a mock auth that at-least calls /api on the client side via `swr`. Thhis should `req`-`res` even on a mock, but presently still disabled.
+- Note: Context Providers were not the most ideal choice in a NextJS environment, but it still adds considerable utility when reducing, slicing, referencing a constant from a fork of a source. The most visible benefit is never having undefined props from the top of the component tree.
+- Note: The downside is that the data will refresh on Next unless it's shallow fetch. Regardless, somce combo in wordth considering.
+
+
+- 
 
 ## Bugs
 - Intersection observer is not pairing well with NextJS SSR. 

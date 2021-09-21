@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import Head from 'next/head';
 import NProgress from 'nprogress';
-import { AppProps } from 'next/app';
+import { AppProps, NextWebVitalsMetric } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { ApolloProvider } from '@apollo/client';
@@ -9,6 +9,7 @@ import { useApollo } from '../lib/apollo';
 import { theme } from '../theme';
 import PokemonsDataProvider from '../context/pokemon.context';
 import AuthProvider from '../context/auth.context';
+import React from 'react';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -47,4 +48,8 @@ export default function App({ Component, pageProps }: AppProps) {
       </PokemonsDataProvider>
     </ApolloProvider>
   );
+}
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  console.log(metric);
 }

@@ -1,10 +1,9 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import { ApolloError } from '@apollo/client';
 import {
   Container,
-  Flex,
   Stack,
-  Icon,
   Drawer,
   DrawerOverlay,
   DrawerContent,
@@ -17,22 +16,66 @@ import {
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import { Header } from '../header';
-import { Footer } from '../shared/Footer';
-import { PokemonItem } from '../deck';
-import { PokemonDetail } from '../pokemon';
-import { Logo } from '../shared/Logo';
-import { NavItem } from '../deck/navItem';
+import { PokemonDetail } from '../pokemon/item';
+
+import { usePokemonsData } from '../../context/pokemon.context';
 import { PokemonFragment } from '../../@types/graphql';
 
+import PokemonDex from '../pokemon/list';
+import Details from '../pokemon/item/details';
 interface DrawerLayoutProps {
   children?: ReactNode;
   data: Array<PokemonFragment>;
+  selectedData?: Array<PokemonFragment>;
+  selected?: boolean;
+  name?: string;
+  number?: string;
+  image?: string;
+  maxHP?: number;
+  maxCP?: number;
+  weight?: {
+    minimum?: string;
+    maximum?: string;
+  };
+  height?: {
+    minimum?: string;
+    maximum?: string;
+  };
+  id?: string;
+  classification?: string;
+  xParam?: string;
+  loading?: boolean;
+  error?: ApolloError | any;
 }
 
 export const DrawerLayout = ({
   children,
+  selected,
+  name,
+  number,
+  image,
+  maxHP,
+  maxCP,
+  height,
+  weight,
+  classification,
   data,
+  selectedData,
+  loading,
+  error,
+  id,
+  xParam,
 }: DrawerLayoutProps) => {
+  const {
+    dispatch,
+    pokemons,
+    pokemonsDeck,
+    setPokemonsDeck,
+    page,
+    setPage,
+    hasPrev,
+    hasNext,
+  } = usePokemonsData();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
 
@@ -46,34 +89,61 @@ export const DrawerLayout = ({
 
   const [inViewData, setInViewData] =
     React.useState<PokemonFragment[]>(data);
-
-  // React.useEffect(() => {
-  //   if (data) {
-  //     setInViewData(data.slice(0, 26));
-  //   }
-  // }, [data]);
-
+  React.useEffect(() => {
+    console.log('layout', pokemonsDeck?.length);
+  }, [page]);
   return (
     <>
-      <Header />
+      <Header
+        selected={selected}
+        number={number}
+        id={id}
+        name={name}
+      />
       <Container maxW={'7xl'} flex={'1 0 auto'} py={8}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
           spacing={{ base: 0, lg: 8 }}
         >
-          <PokemonItem
-            inViewData={inViewData}
-            setInViewData={setInViewData}
-            data={data}
-          />
+          {loading ? (
+            <p>loading...</p>
+          ) : selected ? (
+            <Details
+              id={id}
+              maxCP={maxCP}
+              classification={classification}
+              maxHP={maxHP}
+              image={image}
+              height={height}
+              weight={weight}
+              name={name}
+              number={number}
+            />
+          ) : (
+            <PokemonDex
+              inViewData={inViewData}
+              setInViewData={setInViewData}
+              data={pokemonsDeck}
+              selected={selected}
+              name={name}
+              number={number}
+              xParam={xParam}
+            />
+          )}
+
           <PokemonDetail
             inViewData={inViewData}
             setInViewData={setInViewData}
-            data={data}
+            data={pokemonsDeck}
+            selectedData={selectedData}
+            selected={selected}
+            name={name}
+            number={number}
+            image={image}
+            xParam={xParam}
           />
         </Stack>
       </Container>
-      <Footer />
 
       <IconButton
         display={{ base: 'block', lg: 'none' }}
@@ -83,7 +153,7 @@ export const DrawerLayout = ({
         size={'md'}
         isRound={true}
         onClick={onOpen}
-        aria-label={'Toggle Docs Menu'}
+        aria-label={'Toggle Pokedex Menu'}
         bg={'white'}
         css={{
           boxShadow:
@@ -102,9 +172,7 @@ export const DrawerLayout = ({
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>
-              <Icon as={Logo} w={10} h={10} />
-            </DrawerHeader>
+            <DrawerHeader></DrawerHeader>
             <DrawerBody>
               {isOpen && (
                 <PokemonDetail
