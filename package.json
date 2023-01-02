@@ -6,12 +6,12 @@
   "author": "Joem Elias Sanez",
   "private": true,
   "scripts": {
-    "dev": "yarn codegen && next dev",
-    "build": "next build",
+    "dev": "yarn codegen && next",
+    "build": "yarn codegen && next build",
     "start": "next start",
-    "codegen": "graphql-codegen --config codegen.yml && prettier-eslint --write @types/* lib/* ",
+    "codegen": "graphql-codegen --config codegen.yml && prettier --write @types/* lib/* ",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.graphql . --color",
-    "format": "prettier-eslint --write './**/*.{ts,tsx,scss,css,json,graphql}'"
+    "format": "prettier --write './**/*.{ts,tsx,scss,css,json,graphql}'"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
