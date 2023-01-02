@@ -6,6 +6,15 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/pokemons',
+        permanent: true,
+      },
+    ];
+  },
 
   webpack(config, options) {
     config.module.rules.push({
@@ -30,7 +39,7 @@ module.exports = {
     });
 
     const fileLoaderRule = config.module.rules.find(
-      (rule) => rule.test && rule.test.test('.svg')
+      rule => rule.test && rule.test.test('.svg')
     );
     fileLoaderRule.exclude = /\.svg$/;
 
