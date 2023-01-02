@@ -1,17 +1,17 @@
 {
-  "name": "lux-frontend",
+  "name": "dataviz-nivo",
   "version": "1.0.0",
-  "description": "This is a frontend project that simulates a potential real-life designer hand-off that is given to a software engineer to implement.",
-  "repository": "https://github.com/israelias/lux-frontend",
+  "description": "Pokedex GraphQL API with Nivo",
+  "repository": "https://github.com/israelias/dataviz-nivo",
   "author": "Joem Elias Sanez",
   "private": true,
   "scripts": {
-    "dev": "yarn codegen && next",
+    "dev": "yarn codegen && next dev",
     "build": "yarn codegen && next build",
     "start": "next start",
-    "codegen": "graphql-codegen --config codegen.yml && prettier --write @types/* lib/* ",
+    "codegen": "graphql-codegen --config codegen.yml && prettier-eslint --write @types/* lib/* ",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.graphql . --color",
-    "format": "prettier --write './**/*.{ts,tsx,scss,css,json,graphql}'"
+    "format": "prettier-eslint --write './**/*.{ts,tsx,scss,css,json,graphql}'"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
@@ -48,9 +48,13 @@
     "@types/react-dom": "^17.0.1",
     "graphql-let": "^0.18.4",
     "graphql-tag": "^2.12.5",
+    "prettier": "2.8.1",
     "prettier-eslint": "^13.0.0",
     "prettier-eslint-cli": "^5.0.1",
     "typescript": "4.0",
     "yaml-loader": "^0.6.0"
+  },
+  "engines": {
+    "node": ">= 12.13 <18"
   }
 }
