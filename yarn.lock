@@ -6533,7 +6533,7 @@ __metadata:
     graphql: ^15.5.2
     graphql-codegen-apollo-next-ssr: ^1.7.4
     graphql-let: ^0.18.4
-    graphql-tag: ^2.12.5
+    graphql-tag: ^2.12.6
     next: 12
     nprogress: ^0.2.0
     prettier: 2.8.8
@@ -8418,7 +8418,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-tag@npm:^2.11.0, graphql-tag@npm:^2.12.5":
+"graphql-tag@npm:^2.11.0":
   version: 2.12.5
   resolution: "graphql-tag@npm:2.12.5"
   dependencies:
