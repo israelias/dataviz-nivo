@@ -4552,14 +4552,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.0.26":
-  version: 18.0.26
-  resolution: "@types/react@npm:18.0.26"
+"@types/react@npm:^18.2.35":
+  version: 18.2.35
+  resolution: "@types/react@npm:18.2.35"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: b62f0ea3cdfa68e106391728325057ad36f1bde7ba2dfae029472c47e01e482bc77c6ba4f1dad59f3f04ee81cb597618ff7c30a33c157c0a20462b6dd6aa2d4d
+  checksum: d3f1c39116c82e3a504f3332b9198f94f34a33d8535604434b1e387ecabd41ec995961775e2e1c08feefdde878a5b86220879350900137980d681ae3983db462
   languageName: node
   linkType: hard
 
@@ -6524,7 +6524,7 @@ __metadata:
     "@svgr/webpack": ^5.5.0
     "@types/node": ^18.11.18
     "@types/nprogress": ^0.2.0
-    "@types/react": ^18.0.26
+    "@types/react": ^18.2.35
     "@types/react-dom": ^18.0.10
     cross-fetch: ^3.1.5
     eslint: ^8.31.0
